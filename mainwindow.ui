@@ -7,128 +7,351 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>697</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>100</y>
-      <width>93</width>
-      <height>31</height>
+      <x>0</x>
+      <y>0</y>
+      <width>801</width>
+      <height>911</height>
      </rect>
     </property>
-    <property name="text">
-     <string>upload</string>
+    <property name="minimumSize">
+     <size>
+      <width>771</width>
+      <height>0</height>
+     </size>
     </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>100</y>
-      <width>101</width>
-      <height>21</height>
-     </rect>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>1000</height>
+     </size>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-      <bold>true</bold>
-     </font>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
-    <property name="text">
-     <string>Load image</string>
+    <property name="styleSheet">
+     <string notr="true">QTabWidget::pane {
+  border: 1px solid lightgray;
+  top:-1px; 
+  background: rgb(245, 245, 245);; 
+} 
+
+QTabBar::tab {
+	height: 35; width: 100px; 
+    background: #48555E;
+    color: white;
+   	border: 1px solid lightgray; 
+}
+
+
+QTabBar::tab:selected { 
+  background:rgb(255, 147, 111); 
+  margin-bottom: -1px; 
+}</string>
     </property>
-   </widget>
-   <widget class="QLabel" name="label_img">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>180</y>
-      <width>271</width>
-      <height>331</height>
-     </rect>
+    <property name="tabPosition">
+     <enum>QTabWidget::North</enum>
     </property>
-    <property name="text">
-     <string/>
+    <property name="currentIndex">
+     <number>0</number>
     </property>
-   </widget>
-   <widget class="QLabel" name="grey_image">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>180</y>
-      <width>281</width>
-      <height>321</height>
-     </rect>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
     </property>
-    <property name="text">
-     <string/>
+    <property name="documentMode">
+     <bool>false</bool>
     </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>520</y>
-      <width>63</width>
-      <height>20</height>
-     </rect>
+    <property name="tabsClosable">
+     <bool>false</bool>
     </property>
-    <property name="text">
-     <string>original</string>
+    <property name="movable">
+     <bool>true</bool>
     </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>552</x>
-      <y>520</y>
-      <width>71</width>
-      <height>20</height>
-     </rect>
+    <property name="tabBarAutoHide">
+     <bool>false</bool>
     </property>
-    <property name="text">
-     <string>grey scale</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>100</y>
-      <width>121</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Thersold </string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>100</y>
-      <width>93</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>apply</string>
-    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Filtering</string>
+     </attribute>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>440</y>
+        <width>740</width>
+        <height>94</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="preview_filter_1">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>58</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>58</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QPushButton" name="filter_1_btn">
+           <property name="minimumSize">
+            <size>
+             <width>140</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>140</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Gaussion Filter</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="preview_filter_2">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>58</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>58</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QPushButton" name="filter_2_btn">
+           <property name="minimumSize">
+            <size>
+             <width>140</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>140</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Median Filter</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="preview_filter_3">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>58</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>58</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QPushButton" name="filter_3_btn">
+           <property name="minimumSize">
+            <size>
+             <width>140</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>140</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Low Pass Filter</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="preview_filter_4">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>58</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>58</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QPushButton" name="filter_4_btn">
+           <property name="minimumSize">
+            <size>
+             <width>140</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>140</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>High Pass Filter</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_6">
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="preview_filter_5">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>58</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>58</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QPushButton" name="filter_5_btn">
+           <property name="minimumSize">
+            <size>
+             <width>140</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>140</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Histogram Eqaulization</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_5">
+     <attribute name="title">
+      <string>Detect Edges</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Curves</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_6">
+     <attribute name="title">
+      <string>Thresholding</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_7">
+     <attribute name="title">
+      <string>RGB Hist</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_9">
+     <attribute name="title">
+      <string>Hybrid</string>
+     </attribute>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -137,7 +360,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
