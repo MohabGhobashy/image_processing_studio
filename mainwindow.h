@@ -16,9 +16,8 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_actionupload_triggered();
 
 private:
     Ui::MainWindow *ui;

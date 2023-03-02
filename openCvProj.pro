@@ -16,10 +16,12 @@ LIBS += C:\openCV\opencv\release\bin\libopencv_imgproc470.dll
 
 
 SOURCES += \
+    Image.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    Image.h \
     mainwindow.h
 
 FORMS += \

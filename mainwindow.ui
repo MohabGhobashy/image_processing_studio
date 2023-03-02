@@ -326,6 +326,70 @@ QTabBar::tab:selected {
        </item>
       </layout>
      </widget>
+     <widget class="QLabel" name="originalImgLbl">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>360</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="filteredImgLbl">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>360</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>70</y>
+        <width>361</width>
+        <height>281</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_9">
+       <item>
+        <widget class="QLabel" name="originalImg">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>429</x>
+        <y>69</y>
+        <width>351</width>
+        <height>281</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <item>
+        <widget class="QLabel" name="filteredImg">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
@@ -363,8 +427,23 @@ QTabBar::tab:selected {
      <height>25</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menugg">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionupload"/>
+   </widget>
+   <addaction name="menugg"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionupload">
+   <property name="text">
+    <string>upload</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::TextHeuristicRole</enum>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
