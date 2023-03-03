@@ -19,6 +19,13 @@ private slots:
 
     void on_actionupload_triggered();
 
+
+    void on_normalizeBtn_clicked();
+
+    void on_equalizeBtn_clicked();
+
+    void on_tabWidget_tabBarClicked(int index);
+
 private:
     Ui::MainWindow *ui;
 };

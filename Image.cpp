@@ -11,8 +11,8 @@ void Image::setImage(Mat& img)
 }
 
 void Image::setOriginalMat(){
-    const int modesNum = 4;
-    string modes[modesNum] = {"filtring", "edge detection", "threshold", "hyprid"};
+    const int modesNum = 5;
+    string modes[modesNum] = {"filtring", "edge detection", "process", "threshold", "hyprid"};
     for(int i= 0; i<modesNum; i++){
         this->UpdatedImgs[modes[i]] = originalImg.clone();
     }
