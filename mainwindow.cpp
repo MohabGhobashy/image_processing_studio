@@ -13,6 +13,7 @@
 #include "processing.h"
 
 
+#include"Threshold.h"
 using namespace cv;
 
 Image* img = new Image();
@@ -25,6 +26,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui->equalizeBtn->setDisabled(true);
     ui->normalizeBtn->setDisabled(true);
 
+    ui->horizontalSlider->hide();
+    ui->cSlider->hide();
+    ui->blockSizeSlider->hide();
+    ui->slider_value->hide();
+    ui->slider_label->hide();
+    ui->labelOriginalTab7->hide();
+    ui->labelThreshold->hide();
+    ui->localRadio->hide();
+    ui->globalRadio->hide();
+    ui->submitThreshold->hide();
+    ui->cLabel->hide();
+    ui->blockLabel->hide();
 }
 
 MainWindow::~MainWindow()
@@ -54,19 +67,46 @@ void MainWindow::on_actionupload_triggered()
     ui->filteredImg->setPixmap(pix.scaled(width_img1,height_img1,Qt::KeepAspectRatio));
     ui->originalImgLbl->setText("Original Image");
     ui->filteredImgLbl->setText("Filtered Image");
+//tab thresholding
+    Mat grayImg;
 
-    // tab 4
-//    cvtColor(img->getOriginalImage(), img->getImage("process"), COLOR_BGR2GRAY);
-//    QImage processedImg((uchar*)img->getImage("process").data, img->getImage("process").cols, img->getImage("process").rows,QImage::Format_Grayscale8);
-//    QPixmap Ppix4 = QPixmap::fromImage(processedImg);
-//    int width_img2=ui->originalImg_tab4->width();
-//    int height_img2=ui->originalImg_tab4->height();
-//    ui->originalImg_tab4->setPixmap(Ppix4.scaled(width_img2,height_img2,Qt::KeepAspectRatio));
-//    ui->processedImg->setPixmap(Ppix4.scaled(width_img2,height_img2,Qt::KeepAspectRatio));
-//    ui->originalImgLbl_tab4->setText("Original Image");
-//    ui->processedImgLbl->setText("Processed Image");
-//    ui->equalizeBtn->setDisabled(false);
-//    ui->normalizeBtn->setDisabled(false);
+    convertToGrayscale(image, grayImg);
+    QImage imageGrayQt((uchar*)grayImg.data, grayImg.cols, grayImg.rows,QImage::Format_Grayscale8);
+    QPixmap pixGray = QPixmap::fromImage(imageGrayQt);
+    img->updateImage("threshold",grayImg);
+    ui->originalImgTab6->setPixmap(pixGray.scaled(width_img,height_img,Qt::KeepAspectRatio));
+
+    ui->labelOriginalTab7->show();
+    ui->labelThreshold->show();
+    ui->localRadio->show();
+    ui->globalRadio->show();
+
+    ui->submitThreshold->show();
+
+
+}
+
+//show slider value while changing
+void MainWindow::on_horizontalSlider_valueChanged(int value)
+{
+    ui->slider_value->setText( QString::number(value));
+
+}
+
+
+void MainWindow::on_globalRadio_clicked()
+{
+    ui->horizontalSlider->show();
+    ui->slider_value->show();
+    ui->slider_label->show();
+    ui->cSlider->hide();
+    ui->blockSizeSlider->hide();
+    ui->cLabel->hide();
+    ui->blockLabel->hide();
+    ui->cSliderValue->hide();
+    ui->blockSliderValue->hide();
+
+    
 
     ui->equalizeBtn->setDisabled(false);
     ui->normalizeBtn->setDisabled(false);
@@ -118,4 +158,67 @@ void MainWindow::on_tabWidget_tabBarClicked(int index)
 
     }
 }
+
+
+void MainWindow::on_submitThreshold_clicked()
+{
+    if (ui->globalRadio->isChecked()) {
+
+     Mat originalImg=img->getImage("threshold");
+     Mat globaThresholded;
+
+    Threshold(originalImg, globaThresholded,ui->horizontalSlider->value() );
+
+
+
+     QImage image2((uchar*)globaThresholded.data, globaThresholded.cols, globaThresholded.rows,QImage::Format_Grayscale8);
+     QPixmap pix = QPixmap::fromImage(image2);
+     int width_img=ui->thresholdedImg->width();
+     int height_img=ui->thresholdedImg->height();
+     ui->thresholdedImg->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+    } else {
+
+        Mat originalImg=img->getImage("threshold");
+        Mat localThresholded;
+        localThreshold(originalImg, localThresholded,ui->blockSizeSlider->value(),ui->cSlider->value() );
+        QImage image2((uchar*)localThresholded.data, localThresholded.cols, localThresholded.rows,QImage::Format_Grayscale8);
+        QPixmap pix = QPixmap::fromImage(image2);
+        int width_img=ui->thresholdedImg->width();
+        int height_img=ui->thresholdedImg->height();
+        ui->thresholdedImg->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+
+    }
+}
+
+
+
+
+
+void MainWindow::on_cSlider_valueChanged(int value)
+{
+    ui->cSliderValue->setText( QString::number(value));
+
+}
+
+
+void MainWindow::on_blockSizeSlider_valueChanged(int value)
+{
+    ui->blockSliderValue->setText( QString::number(value));
+
+}
+
+
+void MainWindow::on_localRadio_clicked()
+{
+    ui->cSlider->show();
+    ui->blockSizeSlider->show();
+    ui->cLabel->show();
+    ui->blockLabel->show();
+    ui->horizontalSlider->hide();
+    ui->slider_label->hide();
+    ui->slider_value->hide();
+    ui->cSliderValue->show();
+    ui->blockSliderValue->show();
+}
+
 
