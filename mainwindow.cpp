@@ -61,10 +61,10 @@ void MainWindow::on_actionupload_triggered()
     img->setImage(dest);
     QImage image2((uchar*)dest.data, dest.cols, dest.rows,QImage::Format_RGB888);
     QPixmap pix = QPixmap::fromImage(image2);
-    int width_img1=ui->originalImg->width();
-    int height_img1=ui->originalImg->height();
-    ui->originalImg->setPixmap(pix.scaled(width_img1,height_img1,Qt::KeepAspectRatio));
-    ui->filteredImg->setPixmap(pix.scaled(width_img1,height_img1,Qt::KeepAspectRatio));
+    int width_img=ui->originalImg->width();
+    int height_img=ui->originalImg->height();
+    ui->originalImg->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+    ui->filteredImg->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
     ui->originalImgLbl->setText("Original Image");
     ui->filteredImgLbl->setText("Filtered Image");
 //tab thresholding
@@ -80,9 +80,18 @@ void MainWindow::on_actionupload_triggered()
     ui->labelThreshold->show();
     ui->localRadio->show();
     ui->globalRadio->show();
-
     ui->submitThreshold->show();
 
+    //tab4
+    ui->equalizeBtn->setDisabled(false);
+    ui->normalizeBtn->setDisabled(false);
+    cvtColor(img->getOriginalImage(), img->getImage("process"), COLOR_BGR2GRAY);
+    QImage processedImg((uchar*)img->getImage("process").data, img->getImage("process").cols, img->getImage("process").rows,QImage::Format_Grayscale8);
+    QPixmap Ppix4 = QPixmap::fromImage(processedImg);
+    ui->originalImg_tab4->setPixmap(Ppix4.scaled(width_img,height_img,Qt::KeepAspectRatio));
+    ui->processedImg->setPixmap(Ppix4.scaled(width_img,height_img,Qt::KeepAspectRatio));
+    ui->originalImgLbl_tab4->setText("Original Image");
+    ui->processedImgLbl->setText("Processed Image");
 
 }
 
@@ -108,8 +117,7 @@ void MainWindow::on_globalRadio_clicked()
 
     
 
-    ui->equalizeBtn->setDisabled(false);
-    ui->normalizeBtn->setDisabled(false);
+
 
 }
 
@@ -146,15 +154,15 @@ void MainWindow::on_tabWidget_tabBarClicked(int index)
     if(imgPath.isEmpty())
         return;
     if(index==3){
-        cvtColor(img->getOriginalImage(), img->getImage("process"), COLOR_BGR2GRAY);
-        QImage processedImg((uchar*)img->getImage("process").data, img->getImage("process").cols, img->getImage("process").rows,QImage::Format_Grayscale8);
-        QPixmap Ppix4 = QPixmap::fromImage(processedImg);
-        int width_img2=ui->originalImg->width();
-        int height_img2=ui->originalImg->height();
-        ui->originalImg_tab4->setPixmap(Ppix4.scaled(width_img2,height_img2,Qt::KeepAspectRatio));
-        ui->processedImg->setPixmap(Ppix4.scaled(width_img2,height_img2,Qt::KeepAspectRatio));
-        ui->originalImgLbl_tab4->setText("Original Image");
-        ui->processedImgLbl->setText("Processed Image");
+//        cvtColor(img->getOriginalImage(), img->getImage("process"), COLOR_BGR2GRAY);
+//        QImage processedImg((uchar*)img->getImage("process").data, img->getImage("process").cols, img->getImage("process").rows,QImage::Format_Grayscale8);
+//        QPixmap Ppix4 = QPixmap::fromImage(processedImg);
+//        int width_img2=ui->originalImg->width();
+//        int height_img2=ui->originalImg->height();
+//        ui->originalImg_tab4->setPixmap(Ppix4.scaled(width_img2,height_img2,Qt::KeepAspectRatio));
+//        ui->processedImg->setPixmap(Ppix4.scaled(width_img2,height_img2,Qt::KeepAspectRatio));
+//        ui->originalImgLbl_tab4->setText("Original Image");
+//        ui->processedImgLbl->setText("Processed Image");
 
     }
 }
