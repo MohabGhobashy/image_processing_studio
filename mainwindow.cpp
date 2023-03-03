@@ -20,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->horizontalSlider->hide();
+    ui->cSlider->hide();
+    ui->blockSizeSlider->hide();
     ui->slider_value->hide();
     ui->slider_label->hide();
     ui->labelOriginalTab7->hide();
@@ -27,6 +29,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->localRadio->hide();
     ui->globalRadio->hide();
     ui->submitThreshold->hide();
+    ui->cLabel->hide();
+    ui->blockLabel->hide();
 }
 
 MainWindow::~MainWindow()
@@ -86,6 +90,14 @@ void MainWindow::on_globalRadio_clicked()
     ui->horizontalSlider->show();
     ui->slider_value->show();
     ui->slider_label->show();
+    ui->cSlider->hide();
+    ui->blockSizeSlider->hide();
+    ui->cLabel->hide();
+    ui->blockLabel->hide();
+    ui->cSliderValue->hide();
+    ui->blockSliderValue->hide();
+
+
 }
 
 
@@ -94,20 +106,60 @@ void MainWindow::on_submitThreshold_clicked()
     if (ui->globalRadio->isChecked()) {
 
      Mat originalImg=img->getImage("threshold");
-     Mat thresholded;
+     Mat globaThresholded;
 
-    Threshold(originalImg, thresholded,ui->horizontalSlider->value() );
+    Threshold(originalImg, globaThresholded,ui->horizontalSlider->value() );
 
 
 
-     QImage image2((uchar*)thresholded.data, thresholded.cols, thresholded.rows,QImage::Format_Grayscale8);
+     QImage image2((uchar*)globaThresholded.data, globaThresholded.cols, globaThresholded.rows,QImage::Format_Grayscale8);
      QPixmap pix = QPixmap::fromImage(image2);
      int width_img=ui->thresholdedImg->width();
      int height_img=ui->thresholdedImg->height();
      ui->thresholdedImg->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
     } else {
 
+        Mat originalImg=img->getImage("threshold");
+        Mat localThresholded;
+        localThreshold(originalImg, localThresholded,ui->blockSizeSlider->value(),ui->cSlider->value() );
+        QImage image2((uchar*)localThresholded.data, localThresholded.cols, localThresholded.rows,QImage::Format_Grayscale8);
+        QPixmap pix = QPixmap::fromImage(image2);
+        int width_img=ui->thresholdedImg->width();
+        int height_img=ui->thresholdedImg->height();
+        ui->thresholdedImg->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
 
     }
 }
+
+
+
+
+
+void MainWindow::on_cSlider_valueChanged(int value)
+{
+    ui->cSliderValue->setText( QString::number(value));
+
+}
+
+
+void MainWindow::on_blockSizeSlider_valueChanged(int value)
+{
+    ui->blockSliderValue->setText( QString::number(value));
+
+}
+
+
+void MainWindow::on_localRadio_clicked()
+{
+    ui->cSlider->show();
+    ui->blockSizeSlider->show();
+    ui->cLabel->show();
+    ui->blockLabel->show();
+    ui->horizontalSlider->hide();
+    ui->slider_label->hide();
+    ui->slider_value->hide();
+    ui->cSliderValue->show();
+    ui->blockSliderValue->show();
+}
+
 

@@ -27,6 +27,14 @@ private slots:
 
     void on_submitThreshold_clicked();
 
+    void on_cSlider_actionTriggered(int action);
+
+    void on_cSlider_valueChanged(int value);
+
+    void on_blockSizeSlider_valueChanged(int value);
+
+    void on_localRadio_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

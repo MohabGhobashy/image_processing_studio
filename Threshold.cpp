@@ -38,3 +38,43 @@ void Threshold(Mat& input_image, Mat& output_image,int threshold ) {
         }
     }
 }
+
+ void localThreshold( cv::Mat& input, cv::Mat& output, int blockSize, double C) {
+     vector<int> pixelValues(blockSize * blockSize);
+     output.create(input.rows, input.cols, CV_8UC1);
+
+     for (int y = 0; y < input.rows; y++)
+         {
+             for (int x = 0; x < input.cols; x++)
+             {
+                 // Get the neighborhood around the pixel
+                 int index = 0;
+                 for (int j = -blockSize / 2; j <= blockSize / 2; j++)
+                 {
+                     for (int i = -blockSize / 2; i <= blockSize / 2; i++)
+                     {
+                         // Check if the pixel is within the image boundaries
+                         int px = x + i;
+                         int py = y + j;
+                         if (px >= 0 && px < input.cols && py >= 0 && py < input.rows)
+                         {
+                             pixelValues[index++] = input.at<uchar>(py, px);
+                         }
+                     }
+                 }
+
+                 // Compute the local threshold using the mean and constant C
+                 int threshold = (int)round(cv::mean(pixelValues)[0] - C);
+
+                 // Apply the threshold to the pixel
+                 if (input.at<uchar>(y, x) >= threshold)
+                 {
+                     output.at<uchar>(y, x) = 255;
+                 }
+                 else
+                 {
+                     output.at<uchar>(y, x) = 0;
+                 }
+             }
+         }
+}

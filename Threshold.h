@@ -7,4 +7,5 @@
 
 void convertToGrayscale(cv::Mat& input_image, cv::Mat& output_image);
 void Threshold(cv::Mat& input_image, cv::Mat& output_image,int threshold );
+void localThreshold( cv::Mat& input, cv::Mat& output, int blockSize, double C);
 #endif // THRESHOLD_H
