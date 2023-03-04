@@ -41,6 +41,8 @@ private slots:
 
     void on_localRadio_clicked();
 
+    void on_submitEdges_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
