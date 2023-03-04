@@ -10,6 +10,7 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui.hpp>
 #include "Image.h"
+
 using namespace cv;
 
 Image* img = new Image();

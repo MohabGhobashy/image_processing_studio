@@ -18,11 +18,13 @@ LIBS += C:\openCV\opencv\release\bin\libopencv_imgproc470.dll
 SOURCES += \
     Image.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    noise.cpp
 
 HEADERS += \
     Image.h \
-    mainwindow.h
+    mainwindow.h \
+    noise.h
 
 FORMS += \
     mainwindow.ui
