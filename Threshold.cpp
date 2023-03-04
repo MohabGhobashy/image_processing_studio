@@ -40,6 +40,10 @@ void Threshold(Mat& input_image, Mat& output_image,int threshold ) {
 }
 
  void localThreshold( cv::Mat& input, cv::Mat& output, int blockSize, double C) {
+     if(blockSize%2==0){
+         blockSize=blockSize+1;
+     }
+
      vector<int> pixelValues(blockSize * blockSize);
      output.create(input.rows, input.cols, CV_8UC1);
 
