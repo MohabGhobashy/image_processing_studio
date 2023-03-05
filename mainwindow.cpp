@@ -6,11 +6,15 @@
 #include <QImage>
 #include <QVector>
 #include <QQueue>
+#include<QDebug>
 #include "opencv2/world.hpp"
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui.hpp>
 #include "Image.h"
 #include "processing.h"
+#include"EdgeDetection.h"
+
+using namespace std;
 
 
 #include"Threshold.h"
@@ -38,6 +42,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->submitThreshold->hide();
     ui->cLabel->hide();
     ui->blockLabel->hide();
+    ui->EdgesDirection->hide();
+    ui->EdgesFilter->hide();
+    ui->submitEdges->hide();
+
+    ui->originalImgLbl_2->hide();
+    ui->originalImgLbl_3->hide();
+    ui->label->hide();
+    ui->label2->hide();
+
 }
 
 MainWindow::~MainWindow()
@@ -92,6 +105,19 @@ void MainWindow::on_actionupload_triggered()
     ui->processedImg->setPixmap(Ppix4.scaled(width_img,height_img,Qt::KeepAspectRatio));
     ui->originalImgLbl_tab4->setText("Original Image");
     ui->processedImgLbl->setText("Processed Image");
+
+
+    //    tab edge
+    ui->EdgesFilter->show();
+    ui->submitEdges->show();
+    ui->EdgesDirection->show();
+    ui->originalImgEdges->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+    ui->originalImgLbl_2->show();
+    ui->originalImgLbl_3->show();
+    ui->label->show();
+    ui->label2->show();
+
+
 
 }
 
@@ -229,4 +255,28 @@ void MainWindow::on_localRadio_clicked()
     ui->blockSliderValue->show();
 }
 
+
+
+void MainWindow::on_submitEdges_clicked()
+{
+
+
+ Mat originalImg=img->getImage("threshold");
+ Mat result;
+ int(*mask)[3];
+
+//convertToGrayscale(originalImg,grayScaled);
+ mask=getArray(ui->EdgesFilter->currentText().toStdString(),ui->EdgesDirection->currentText().toStdString());
+ result=masking(originalImg,mask);
+
+ QImage image2((uchar*)result.data, result.cols, result.rows,QImage::Format_Grayscale8);
+
+ QPixmap pix = QPixmap::fromImage(image2);
+ int width_img=ui->filteredImgEdge->width();
+ int height_img=ui->filteredImgEdge->height();
+ ui->filteredImgEdge->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+
+
+
+}
 

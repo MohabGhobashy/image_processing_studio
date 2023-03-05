@@ -16,6 +16,7 @@ LIBS += C:\opencv\open-cv-build\bin\libopencv_imgproc460.dll
 
 
 SOURCES += \
+    EdgeDetection.cpp \
     Image.cpp \
     main.cpp \
     mainwindow.cpp\
@@ -23,6 +24,7 @@ SOURCES += \
     Threshold.cpp
 
 HEADERS += \
+    EdgeDetection.h \
     Image.h \
     mainwindow.h\
     Processing.h\
