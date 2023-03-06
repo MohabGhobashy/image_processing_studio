@@ -43,6 +43,8 @@ private slots:
 
     void on_submitEdges_clicked();
 
+    void on_filter_1_btn_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
