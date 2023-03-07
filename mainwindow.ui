@@ -65,7 +65,7 @@ QTabBar::tab:selected {
      <enum>QTabWidget::North</enum>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>1</number>
     </property>
     <property name="iconSize">
      <size>
@@ -443,7 +443,7 @@ QTabBar::tab:selected {
        </rect>
       </property>
       <property name="text">
-       <string>original</string>
+       <string>Original</string>
       </property>
      </widget>
      <widget class="QLabel" name="originalImgLbl_3">
@@ -456,7 +456,7 @@ QTabBar::tab:selected {
        </rect>
       </property>
       <property name="text">
-       <string>filtered</string>
+       <string>Filtered</string>
       </property>
      </widget>
      <widget class="QPushButton" name="submitEdges">
@@ -536,6 +536,11 @@ QComboBox::down-arrow {
       </property>
       <item>
        <property name="text">
+        <string>Canny</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>Sobel</string>
        </property>
       </item>
@@ -608,7 +613,7 @@ QComboBox::down-arrow {
        </rect>
       </property>
       <property name="text">
-       <string>type</string>
+       <string>Type</string>
       </property>
      </widget>
      <widget class="QLabel" name="label2">
@@ -621,7 +626,7 @@ QComboBox::down-arrow {
        </rect>
       </property>
       <property name="text">
-       <string>direction</string>
+       <string>Direction</string>
       </property>
      </widget>
     </widget>
@@ -1059,7 +1064,6 @@ border-radius: 4px;
       </property>
       <property name="font">
        <font>
-        <family>Segoe Script</family>
         <bold>true</bold>
        </font>
       </property>
@@ -1357,7 +1361,6 @@ border-radius: 4px;
       </property>
       <property name="font">
        <font>
-        <family>Segoe Script</family>
         <bold>true</bold>
        </font>
       </property>
@@ -1376,7 +1379,6 @@ border-radius: 4px;
       </property>
       <property name="font">
        <font>
-        <family>Segoe Script</family>
         <bold>true</bold>
        </font>
       </property>

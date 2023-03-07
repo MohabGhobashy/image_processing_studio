@@ -308,8 +308,14 @@ void MainWindow::on_submitEdges_clicked()
  int(*mask)[3];
 
 //convertToGrayscale(originalImg,grayScaled);
- mask=getArray(ui->EdgesFilter->currentText().toStdString(),ui->EdgesDirection->currentText().toStdString());
+ if(ui->EdgesFilter->currentText().toStdString()=="Canny"){
+     ui->EdgesDirection->hide();
+     result=CannyEdgeDetection(originalImg,7,1,100,3);
+ }
+ else{
+     mask=getArray(ui->EdgesFilter->currentText().toStdString(),ui->EdgesDirection->currentText().toStdString());
  result=masking(originalImg,mask);
+ }
 
  QImage image2((uchar*)result.data, result.cols, result.rows,QImage::Format_Grayscale8);
 
