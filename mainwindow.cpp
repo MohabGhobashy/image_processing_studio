@@ -110,6 +110,7 @@ void MainWindow::on_actionupload_triggered()
     ui->localRadio->show();
     ui->globalRadio->show();
     ui->submitThreshold->show();
+    ui->thresholdedImg->clear();
 
     //tab4
     ui->equalizeBtn->setDisabled(false);
@@ -139,6 +140,7 @@ void MainWindow::on_actionupload_triggered()
     ui->originalImgLbl_3->show();
     ui->label->show();
     ui->label2->show();
+    ui->filteredImgEdge->clear();
 //    tab curves
     Mat histogram;
     Mat distCurve;

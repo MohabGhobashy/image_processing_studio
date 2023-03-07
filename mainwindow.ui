@@ -65,7 +65,7 @@ QTabBar::tab:selected {
      <enum>QTabWidget::North</enum>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>4</number>
     </property>
     <property name="iconSize">
      <size>
@@ -1243,7 +1243,7 @@ qproperty-alignment: AlignCenter; font: 700 12pt &quot;Segoe UI&quot;;
              <number>3</number>
             </property>
             <property name="rightMargin">
-             <number>3</number>
+             <number>1</number>
             </property>
             <item>
              <widget class="QPushButton" name="normalizeBtn">
@@ -1275,15 +1275,20 @@ qproperty-alignment: AlignCenter; font: 700 12pt &quot;Segoe UI&quot;;
           </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_11">
-           <item>
-            <widget class="QLabel" name="processedImg">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-          </layout>
+          <widget class="QWidget" name="" native="true">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_11">
+            <item>
+             <widget class="QLabel" name="processedImg">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
          </item>
         </layout>
        </item>
@@ -1923,7 +1928,7 @@ border-radius: 4px;
      <x>0</x>
      <y>0</y>
      <width>894</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menugg">
