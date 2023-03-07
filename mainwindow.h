@@ -45,6 +45,8 @@ private slots:
 
     void on_medianFiltBtn_clicked();
 
+    void on_gaussFiltBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

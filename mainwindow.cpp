@@ -264,3 +264,9 @@ void MainWindow::on_medianFiltBtn_clicked()
     QPixmap pix = QPixmap::fromImage(image2);
 }
 
+
+void MainWindow::on_gaussFiltBtn_clicked()
+{
+    gaussSigma->setVisible(!gaussSigma->isVisible());
+}
+
