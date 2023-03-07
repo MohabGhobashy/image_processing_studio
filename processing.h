@@ -12,7 +12,7 @@ class ProcessImg
 {
 public:
     ProcessImg();
-    static void normalize(Mat& img, int minVal = 0, int maxVal = 100);
+    static void normalize(Mat& img, int minVal = 0, int maxVal = 255);
     static void histEqualize(Mat& img);
     static QPair<vector<int>, int> calcHist(Mat& img, int maxVal = 255);
 

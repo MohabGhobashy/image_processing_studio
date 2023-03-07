@@ -13,7 +13,7 @@
 #include "Image.h"
 #include "processing.h"
 #include"EdgeDetection.h"
-
+#include"Histogram.h"
 using namespace std;
 
 
@@ -105,6 +105,13 @@ void MainWindow::on_actionupload_triggered()
     ui->processedImg->setPixmap(Ppix4.scaled(width_img,height_img,Qt::KeepAspectRatio));
     ui->originalImgLbl_tab4->setText("Original Image");
     ui->processedImgLbl->setText("Processed Image");
+    Mat origHist = calc_histogram(img->getOriginalImage());
+    Mat orihHistImg = plot_histogram(origHist, 255, 147, 111);
+    QImage processedhist((uchar*)orihHistImg.data, orihHistImg.cols, orihHistImg.rows,QImage::Format_RGB888);
+    QPixmap Hpix4 = QPixmap::fromImage(processedhist);
+    ui->orgininalHist->setPixmap(Hpix4.scaled(width_img,height_img,Qt::KeepAspectRatio));
+    ui->processedHist->setPixmap(Hpix4.scaled(width_img,height_img,Qt::KeepAspectRatio));
+
 
 
     //    tab edge
@@ -116,8 +123,32 @@ void MainWindow::on_actionupload_triggered()
     ui->originalImgLbl_3->show();
     ui->label->show();
     ui->label2->show();
+//    tab curves
+    Mat histogram;
+    Mat distCurve;
+    histogram=calc_histogram(dest);
+    distCurve=DistributionCal(histogram);
+    histogram=plot_histogram(histogram,255,147,111);
 
+    QImage hist((uchar*)histogram.data, histogram.cols, histogram.rows,QImage::Format_RGB888);
+    QPixmap histPix = QPixmap::fromImage(hist);
+    ui->histImg->setPixmap(histPix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+    QImage distimg((uchar*)distCurve.data, distCurve.cols, distCurve.rows,QImage::Format_RGB888);
+    QPixmap disttPix = QPixmap::fromImage(distimg);
+    ui->distImg->setPixmap(disttPix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+    Mat r ,g ,b;
+    std::tie(r, g,b) = splitChannels(dest);
 
+    QImage rImg((uchar*)r.data, r.cols, r.rows,QImage::Format_RGB888);
+    QPixmap Rpix = QPixmap::fromImage(rImg);
+    ui->rHist->setPixmap(Rpix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+
+    QImage gImg((uchar*)g.data, g.cols, g.rows,QImage::Format_RGB888);
+    QPixmap Gpix = QPixmap::fromImage(gImg);
+    ui->gHist->setPixmap(Gpix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+    QImage bImg((uchar*)b.data, b.cols, b.rows,QImage::Format_RGB888);
+    QPixmap Bpix = QPixmap::fromImage(bImg);
+    ui->bHist->setPixmap(Bpix.scaled(width_img,height_img,Qt::KeepAspectRatio));
 
 }
 
@@ -158,6 +189,11 @@ void MainWindow::on_normalizeBtn_clicked()
     int width_img=ui->originalImg_tab4->width();
     int height_img=ui->originalImg_tab4->height();
     ui->processedImg->setPixmap(N_pix4.scaled(width_img,height_img,Qt::KeepAspectRatio));
+    Mat origHist = calc_histogram(img->getImage("process"));
+    Mat orihHistImg = plot_histogram(origHist, 255, 147, 111);
+    QImage processedhist((uchar*)orihHistImg.data, orihHistImg.cols, orihHistImg.rows,QImage::Format_RGB888);
+    QPixmap Hpix4 = QPixmap::fromImage(processedhist);
+    ui->processedHist->setPixmap(Hpix4.scaled(width_img,height_img,Qt::KeepAspectRatio));
 
 
 }
@@ -172,6 +208,12 @@ void MainWindow::on_equalizeBtn_clicked()
     int width_img=ui->originalImg_tab4->width();
     int height_img=ui->originalImg_tab4->height();
     ui->processedImg->setPixmap(N_pix4.scaled(width_img,height_img,Qt::KeepAspectRatio));
+    Mat origHist = calc_histogram(img->getImage("process"));
+    Mat orihHistImg = plot_histogram(origHist, 255, 147, 111);
+    QImage processedhist((uchar*)orihHistImg.data, orihHistImg.cols, orihHistImg.rows,QImage::Format_RGB888);
+    QPixmap Hpix4 = QPixmap::fromImage(processedhist);
+    ui->processedHist->setPixmap(Hpix4.scaled(width_img,height_img,Qt::KeepAspectRatio));
+
 }
 
 
@@ -277,6 +319,12 @@ void MainWindow::on_submitEdges_clicked()
  ui->filteredImgEdge->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
 
 
+
+}
+
+
+void MainWindow::on_filter_1_btn_clicked()
+{
 
 }
 

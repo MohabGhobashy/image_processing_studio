@@ -17,6 +17,7 @@ void ProcessImg::normalize(Mat& img, int minVal, int maxVal){
             if(pixelVal<oldMin) oldMin = pixelVal;
         }
     }
+    if(minVal==oldMin && maxVal==oldMax){return ;}
     for (int rowCounter = 0; rowCounter < img.rows; rowCounter++){
             for (int colCounter = 0; colCounter < img.cols; colCounter++){
                 unsigned char& pixelVal = img.at<unsigned char>(rowCounter,colCounter);

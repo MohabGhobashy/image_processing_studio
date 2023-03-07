@@ -17,6 +17,7 @@ LIBS += C:\openCV\opencv\release\bin\libopencv_imgproc470.dll
 
 SOURCES += \
     EdgeDetection.cpp \
+    Histogram.cpp \
     Image.cpp \
     main.cpp \
     mainwindow.cpp\
@@ -25,6 +26,7 @@ SOURCES += \
 
 HEADERS += \
     EdgeDetection.h \
+    Histogram.h \
     Image.h \
     mainwindow.h\
     Processing.h\
