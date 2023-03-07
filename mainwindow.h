@@ -43,6 +43,8 @@ private slots:
 
     void on_submitEdges_clicked();
 
+    void on_medianFiltBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

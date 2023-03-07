@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "noiseFilters.h"
 #include "ui_mainwindow.h"
 #include <QFileDialog>
 #include <QMessageBox>
@@ -65,12 +66,13 @@ void MainWindow::on_actionupload_triggered()
 
     Mat dest;
     imgPath = QFileDialog::getOpenFileName(this, "Open an Image", "..", "Images (*.png *.xpm *.jpg *.bmb)");
+
     //read image using opencv
     if(imgPath.isEmpty())
         return;
 
     Mat image = imread(imgPath.toStdString());
-    cvtColor(image, dest,COLOR_BGR2RGB);
+    cvtColor(image, dest,COLOR_BGR2GRAY);
     img->setImage(dest);
     QImage image2((uchar*)dest.data, dest.cols, dest.rows,QImage::Format_RGB888);
     QPixmap pix = QPixmap::fromImage(image2);
@@ -80,22 +82,21 @@ void MainWindow::on_actionupload_triggered()
     ui->filteredImg->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
     ui->originalImgLbl->setText("Original Image");
     ui->filteredImgLbl->setText("Filtered Image");
-//tab thresholding
-    Mat grayImg;
 
+    //tab thresholding
+    Mat grayImg;
     convertToGrayscale(image, grayImg);
     QImage imageGrayQt((uchar*)grayImg.data, grayImg.cols, grayImg.rows,QImage::Format_Grayscale8);
     QPixmap pixGray = QPixmap::fromImage(imageGrayQt);
     img->updateImage("threshold",grayImg);
     ui->originalImgTab6->setPixmap(pixGray.scaled(width_img,height_img,Qt::KeepAspectRatio));
-
     ui->labelOriginalTab7->show();
     ui->labelThreshold->show();
     ui->localRadio->show();
     ui->globalRadio->show();
     ui->submitThreshold->show();
 
-    //tab4
+    // tab 4
     ui->equalizeBtn->setDisabled(false);
     ui->normalizeBtn->setDisabled(false);
     cvtColor(img->getOriginalImage(), img->getImage("process"), COLOR_BGR2GRAY);
@@ -106,8 +107,7 @@ void MainWindow::on_actionupload_triggered()
     ui->originalImgLbl_tab4->setText("Original Image");
     ui->processedImgLbl->setText("Processed Image");
 
-
-    //    tab edge
+    // tab edge
     ui->EdgesFilter->show();
     ui->submitEdges->show();
     ui->EdgesDirection->show();
@@ -116,9 +116,6 @@ void MainWindow::on_actionupload_triggered()
     ui->originalImgLbl_3->show();
     ui->label->show();
     ui->label2->show();
-
-
-
 }
 
 //show slider value while changing
@@ -127,7 +124,6 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
     ui->slider_value->setText( QString::number(value));
 
 }
-
 
 void MainWindow::on_globalRadio_clicked()
 {
@@ -140,32 +136,22 @@ void MainWindow::on_globalRadio_clicked()
     ui->blockLabel->hide();
     ui->cSliderValue->hide();
     ui->blockSliderValue->hide();
-
-    
-
-
-
 }
-
-
 
 void MainWindow::on_normalizeBtn_clicked()
 {
-//    Mat N_img = img->getImage("process");
+    // Mat N_img = img->getImage("process");
     ProcessImg::normalize(img->getImage("process"));
     QImage normalizedImg((uchar*)img->getImage("process").data, img->getImage("process").cols, img->getImage("process").rows,QImage::Format_Grayscale8);
     QPixmap N_pix4 = QPixmap::fromImage(normalizedImg);
     int width_img=ui->originalImg_tab4->width();
     int height_img=ui->originalImg_tab4->height();
     ui->processedImg->setPixmap(N_pix4.scaled(width_img,height_img,Qt::KeepAspectRatio));
-
-
 }
-
 
 void MainWindow::on_equalizeBtn_clicked()
 {
-//    Mat E_img = img->getImage("process");
+    // Mat E_img = img->getImage("process");
     ProcessImg::histEqualize(img->getImage("process"));
     QImage equalizedImg((uchar*)img->getImage("process").data, img->getImage("process").cols, img->getImage("process").rows,QImage::Format_Grayscale8);
     QPixmap N_pix4 = QPixmap::fromImage(equalizedImg);
@@ -203,8 +189,6 @@ void MainWindow::on_submitThreshold_clicked()
 
     Threshold(originalImg, globaThresholded,ui->horizontalSlider->value() );
 
-
-
      QImage image2((uchar*)globaThresholded.data, globaThresholded.cols, globaThresholded.rows,QImage::Format_Grayscale8);
      QPixmap pix = QPixmap::fromImage(image2);
      int width_img=ui->thresholdedImg->width();
@@ -224,23 +208,17 @@ void MainWindow::on_submitThreshold_clicked()
     }
 }
 
-
-
-
-
 void MainWindow::on_cSlider_valueChanged(int value)
 {
     ui->cSliderValue->setText( QString::number(value));
 
 }
 
-
 void MainWindow::on_blockSizeSlider_valueChanged(int value)
 {
     ui->blockSliderValue->setText( QString::number(value));
 
 }
-
 
 void MainWindow::on_localRadio_clicked()
 {
@@ -254,8 +232,6 @@ void MainWindow::on_localRadio_clicked()
     ui->cSliderValue->show();
     ui->blockSliderValue->show();
 }
-
-
 
 void MainWindow::on_submitEdges_clicked()
 {
@@ -278,5 +254,13 @@ void MainWindow::on_submitEdges_clicked()
 
 
 
+}
+
+void MainWindow::on_medianFiltBtn_clicked()
+{
+    cvtColor(img->getImage("filtering"), img->getImage("filtering"), COLOR_BGR2GRAY);
+    medianFilter(img->getImage("filtering"));
+    QImage image2((uchar*)img->getImage("filtering").data, img->getImage("filtering").cols, img->getImage("filtering").rows,QImage::Format_Grayscale8);
+    QPixmap pix = QPixmap::fromImage(image2);
 }
 

@@ -21,14 +21,18 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp\
     Processing.cpp\
-    Threshold.cpp
+    Threshold.cpp \
+    noise.cpp \
+    noiseFilters.cpp
 
 HEADERS += \
     EdgeDetection.h \
     Image.h \
     mainwindow.h\
     Processing.h\
-    Threshold.h
+    Threshold.h \
+    noise.h \
+    noiseFilters.h
 
 FORMS += \
     mainwindow.ui
