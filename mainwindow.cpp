@@ -51,6 +51,22 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label->hide();
     ui->label2->hide();
 
+
+    ui->sigmaSlider->hide();
+    ui->sigmaValue->hide();
+
+    ui->kernelSlider->hide();
+    ui->KernelValue->hide();
+    ui->lowThresholdSlider->hide();
+    ui->lowThresholdValue->hide();
+    ui->highThresholdValue->hide();
+    ui->highThresholdSlider->hide();
+    ui->lowThresholdLabel->hide();
+    ui->highThresholdLabel->hide();
+    ui->sigma_label->hide();
+    ui->lowThresholdLabel->hide();
+    ui->highThresholdLabel->hide();
+    ui->kernelLabel->hide();
 }
 
 MainWindow::~MainWindow()
@@ -310,7 +326,7 @@ void MainWindow::on_submitEdges_clicked()
 //convertToGrayscale(originalImg,grayScaled);
  if(ui->EdgesFilter->currentText().toStdString()=="Canny"){
      ui->EdgesDirection->hide();
-     result=CannyEdgeDetection(originalImg,7,1,100,3);
+     result=CannyEdgeDetection(originalImg,ui->sigmaSlider->value(),ui->lowThresholdSlider->value(),ui->highThresholdSlider->value(),ui->kernelSlider->value());
  }
  else{
      mask=getArray(ui->EdgesFilter->currentText().toStdString(),ui->EdgesDirection->currentText().toStdString());
@@ -331,6 +347,110 @@ void MainWindow::on_submitEdges_clicked()
 
 void MainWindow::on_filter_1_btn_clicked()
 {
+
+}
+
+
+void MainWindow::on_sigmaSlider_valueChanged(int value)
+{
+    ui->sigmaValue->setText( QString::number(value));
+
+}
+
+
+void MainWindow::on_kernelSlider_valueChanged(int value)
+{
+    ui->KernelValue->setText( QString::number(value));
+
+}
+
+
+
+
+void MainWindow::on_lowThresholdSlider_valueChanged(int value)
+{
+    ui->lowThresholdValue->setText( QString::number(value));
+
+}
+
+
+void MainWindow::on_EdgesFilter_currentIndexChanged(int index)
+{
+    if (index == 3)
+        {
+            ui->EdgesDirection->hide();
+            ui->sigmaSlider->show();
+            ui->sigmaValue->show();
+            ui->kernelSlider->show();
+            ui->KernelValue->show();
+            ui->lowThresholdSlider->show();
+            ui->lowThresholdValue->show();
+            ui->highThresholdValue->show();
+            ui->highThresholdSlider->show();
+            ui->label2->hide();
+            ui->sigma_label->show();
+            ui->lowThresholdLabel->show();
+            ui->highThresholdLabel->show();
+            ui->kernelLabel->show();
+        }
+        else
+        {
+        ui->EdgesDirection->show();
+        ui->sigmaSlider->hide();
+        ui->sigmaValue->hide();
+        ui->kernelSlider->hide();
+        ui->KernelValue->hide();
+        ui->lowThresholdSlider->hide();
+        ui->lowThresholdValue->hide();
+        ui->highThresholdValue->hide();
+        ui->highThresholdSlider->hide();
+        ui->sigma_label->hide();
+        ui->lowThresholdLabel->hide();
+        ui->highThresholdLabel->hide();
+        ui->kernelLabel->hide();
+        }
+}
+
+
+void MainWindow::on_highThresholdSlider_valueChanged(int value)
+{
+    ui->highThresholdValue->setText( QString::number(value));
+
+}
+
+
+void MainWindow::on_comboBox_currentIndexChanged(int index)
+{
+    Mat r ,g ,b;
+    if(index==0){
+            std::tie(r, g,b) = splitChannels(img->getOriginalImage());
+
+}
+    if(index==1){
+
+
+
+        std::tie(r, g,b)=plot_rgb_distribution_function(img->getOriginalImage(),"DF");
+
+
+
+    }
+    if(index==2){
+std::tie(r, g,b)=plot_rgb_distribution_function(img->getOriginalImage(),"cumulative");
+
+    }
+    int width_img=ui->rHist->width();
+    int height_img=ui->rHist->height();
+    QImage rImg((uchar*)r.data, r.cols, r.rows,QImage::Format_RGB888);
+    QPixmap Rpix = QPixmap::fromImage(rImg);
+    ui->rHist->setPixmap(Rpix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+
+    QImage gImg((uchar*)g.data, g.cols, g.rows,QImage::Format_RGB888);
+    QPixmap Gpix = QPixmap::fromImage(gImg);
+    ui->gHist->setPixmap(Gpix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+    QImage bImg((uchar*)b.data, b.cols, b.rows,QImage::Format_RGB888);
+    QPixmap Bpix = QPixmap::fromImage(bImg);
+    ui->bHist->setPixmap(Bpix.scaled(width_img,height_img,Qt::KeepAspectRatio));
 
 }
 

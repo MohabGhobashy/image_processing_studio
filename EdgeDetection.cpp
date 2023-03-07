@@ -134,6 +134,7 @@ void non_max_suppression(cv::Mat& magnitude,cv::Mat& direction,cv::Mat& result) 
 }
 
 cv::Mat CannyEdgeDetection(cv::Mat image, int segma, int lowThreshold, int highThreshold, int KernalSize) {
+    if(KernalSize%2==0) KernalSize=KernalSize+1;
     cv::Mat Blured, magnitude, direction, result;
     int(*maskH)[3];
     int(*maskV)[3];
