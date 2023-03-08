@@ -41,7 +41,7 @@ The Desktop Application is built using:
 | ------------------------------ | ------- | --- |
 | [Ahmed Emad](https://github.com/ahmeddemaad)              | 1 | 6  |
 | [Mohammed Mostafa](https://github.com/Mo-Moustafa)        | 1 | 47 |
-| [Mohab Ghobashy](https://github.com/MohabGhobashy)        | 2 | 14 |
+| [Mohab Ghobashy](https://github.com/MohabGhobashy)        | 2 | 39 |
 | [Magdy Nasr](https://github.com/MyProjectsProgress)       | 2 | 15 |
 | [Youssef Kadry](https://github.com/YousefKadry)           | 1 | 13 |
 
