@@ -29,6 +29,7 @@ Mat plot_histogram(Mat histogram ,int r,int g,int b) {
             rectangle(histogram_image, Point(2 * i, histogram_image.rows - normalized_histogram.at<float>(i)),
             Point(2 * (i + 1), histogram_image.rows), Scalar(r, g, b));
     }
+
     return histogram_image;
 
 };
