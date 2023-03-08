@@ -14,14 +14,18 @@
 #include "processing.h"
 #include"EdgeDetection.h"
 #include"Histogram.h"
-using namespace std;
-
-
 #include"Threshold.h"
+#include "frequencyfilters.h"
+
+using namespace std;
 using namespace cv;
 
 Image* img = new Image();
 QString imgPath;
+
+Image* img2 = new Image();
+QString imgPath2;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -96,9 +100,9 @@ void MainWindow::on_actionupload_triggered()
     ui->filteredImg->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
     ui->originalImgLbl->setText("Original Image");
     ui->filteredImgLbl->setText("Filtered Image");
-//tab thresholding
-    Mat grayImg;
 
+    //tab thresholding
+    Mat grayImg;
     convertToGrayscale(image, grayImg);
     QImage imageGrayQt((uchar*)grayImg.data, grayImg.cols, grayImg.rows,QImage::Format_Grayscale8);
     QPixmap pixGray = QPixmap::fromImage(imageGrayQt);
@@ -167,6 +171,15 @@ void MainWindow::on_actionupload_triggered()
     QImage bImg((uchar*)b.data, b.cols, b.rows,QImage::Format_RGB888);
     QPixmap Bpix = QPixmap::fromImage(bImg);
     ui->bHist->setPixmap(Bpix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+
+    //tab frequency filters
+    cvtColor(img->getOriginalImage(), img->getImage("hyprid"), COLOR_BGR2GRAY);
+    Mat imaggrey = img->getImage("hyprid");
+    QImage imageprevgrey((uchar*)imaggrey.data, imaggrey.cols, imaggrey.rows,QImage::Format_Grayscale8);
+    QPixmap freqpix = QPixmap::fromImage(imageprevgrey);
+    ui->originalImg_freqfilters->setPixmap(freqpix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+    ui->originalImg_freqfilters2->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+
 
 }
 
@@ -454,5 +467,131 @@ std::tie(r, g,b)=plot_rgb_distribution_function(img->getOriginalImage(),"cumulat
     QPixmap Bpix = QPixmap::fromImage(bImg);
     ui->bHist->setPixmap(Bpix.scaled(width_img,height_img,Qt::KeepAspectRatio));
 
+}
+
+
+void MainWindow::on_lowpass_btn_clicked()
+{
+    cvtColor(img->getOriginalImage(), img->getImage("hyprid"), COLOR_BGR2GRAY);
+
+    Mat img1 = img->getImage("hyprid");
+    cv::resize(img1, img1, Size(512, 512), 0, 0);
+
+    Mat complex_img = calcDFT(img1);
+    Mat filter = createFilter(complex_img, 20, "lowpass");
+    Mat output = applyFilter(complex_img, filter);
+    ifft(output);
+
+    //prepare to view
+    double  minVal,  maxVal;
+    minMaxLoc(output,  &minVal,  &maxVal);
+    output.convertTo(output,  CV_8U,  255.0/(maxVal  -  minVal),  -minVal);
+
+    QImage image2((uchar*)output.data, output.cols, output.rows,QImage::Format_Grayscale8);
+    QPixmap pix = QPixmap::fromImage(image2);
+    int width_img=ui->originalImg->width();
+    int height_img=ui->originalImg->height();
+    ui->freq_filtered->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+
+}
+
+
+void MainWindow::on_highpass_btn_clicked()
+{
+    cvtColor(img->getOriginalImage(), img->getImage("hyprid"), COLOR_BGR2GRAY);
+
+    Mat img1 = img->getImage("hyprid");
+    cv::resize(img1, img1, Size(512, 512), 0, 0);
+
+    Mat complex_img = calcDFT(img1);
+    Mat filter = createFilter(complex_img, 20, "highpass");
+    Mat output = applyFilter(complex_img, filter);
+    ifft(output);
+
+    //prepare to view
+    double  minVal,  maxVal;
+    minMaxLoc(output,  &minVal,  &maxVal);
+    output.convertTo(output,  CV_8U,  255.0/(maxVal  -  minVal),  -minVal);
+
+    QImage image2((uchar*)output.data, output.cols, output.rows,QImage::Format_Grayscale8);
+    QPixmap pix = QPixmap::fromImage(image2);
+    int width_img=ui->originalImg->width();
+    int height_img=ui->originalImg->height();
+    ui->freq_filtered->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+}
+
+
+void MainWindow::on_submitThreshold_2_clicked()
+{
+    // first image
+    cvtColor(img->getOriginalImage(), img->getImage("hyprid"), COLOR_BGR2GRAY);
+    Mat imglow = img->getImage("hyprid");
+    cv::resize(imglow, imglow, Size(512, 512), 0, 0);
+    Mat complex_img1 = calcDFT(imglow);
+    Mat filter1 = createFilter(complex_img1, 20, "lowpass");
+    Mat output1 = applyFilter(complex_img1, filter1);
+
+    // second image
+    cvtColor(img2->getOriginalImage(), img2->getImage("hyprid"), COLOR_BGR2GRAY);
+    Mat imghigh = img2->getImage("hyprid");
+    cv::resize(imghigh, imghigh, Size(512, 512), 0, 0);
+    Mat complex_img2 = calcDFT(imghigh);
+    Mat filter2 = createFilter(complex_img2, 20, "highpass");
+    Mat output2 = applyFilter(complex_img2, filter2);
+
+
+    // create hybrid image
+    Mat hybrid;
+    add(output1, output2, hybrid);
+    ifft(hybrid);
+    ifft(output1);
+    ifft(output2);
+
+    //prepare to view
+    double  minVal,  maxVal;
+    minMaxLoc(output1,  &minVal,  &maxVal);
+    output1.convertTo(output1,  CV_8U,  255.0/(maxVal  -  minVal),  -minVal);
+
+    minMaxLoc(output2,  &minVal,  &maxVal);
+    output2.convertTo(output2,  CV_8U,  255.0/(maxVal  -  minVal),  -minVal);
+
+    minMaxLoc(hybrid,  &minVal,  &maxVal);
+    hybrid.convertTo(hybrid,  CV_8U,  255.0/(maxVal  -  minVal),  -minVal);
+
+    //view all images
+    QImage image3((uchar*)output1.data, output1.cols, output1.rows,QImage::Format_Grayscale8);
+    QPixmap pix3 = QPixmap::fromImage(image3);
+    int width_img=ui->originalImg->width();
+    int height_img=ui->originalImg->height();
+    ui->originalImg_freqfilters2->setPixmap(pix3.scaled(width_img,height_img,Qt::KeepAspectRatio));
+
+    QImage image4((uchar*)output2.data, output2.cols, output2.rows,QImage::Format_Grayscale8);
+    QPixmap pix4 = QPixmap::fromImage(image4);
+    ui->originalImg_freqfilters3->setPixmap(pix4.scaled(width_img,height_img,Qt::KeepAspectRatio));
+
+    QImage image5((uchar*)hybrid.data, hybrid.cols, hybrid.rows,QImage::Format_Grayscale8);
+    QPixmap pix5 = QPixmap::fromImage(image5);
+    ui->resulthybrid->setPixmap(pix5.scaled(width_img,height_img,Qt::KeepAspectRatio));
+}
+
+
+void MainWindow::on_actionupload_2nd_img_triggered()
+{
+    Mat dest;
+    imgPath2 = QFileDialog::getOpenFileName(this, "Open an Image", "..", "Images (*.png *.xpm *.jpg *.bmb)");
+    //read image using opencv
+    if(imgPath2.isEmpty())
+        return;
+
+    Mat image = imread(imgPath2.toStdString());
+    cvtColor(image, dest,COLOR_BGR2RGB);
+    img2->setImage(dest);
+
+    QImage image2((uchar*)dest.data, dest.cols, dest.rows,QImage::Format_RGB888);
+    QPixmap pix = QPixmap::fromImage(image2);
+    int width_img=ui->originalImg->width();
+    int height_img=ui->originalImg->height();
+
+    ui->originalImg_freqfilters3->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
 }
 

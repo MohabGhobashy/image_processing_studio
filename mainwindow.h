@@ -59,6 +59,16 @@ private slots:
 
     void on_comboBox_currentIndexChanged(int index);
 
+    void on_filter_3_btn_clicked();
+
+    void on_lowpass_btn_clicked();
+
+    void on_highpass_btn_clicked();
+
+    void on_submitThreshold_2_clicked();
+
+    void on_actionupload_2nd_img_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
