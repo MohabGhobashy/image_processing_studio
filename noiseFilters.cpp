@@ -6,7 +6,6 @@
 using namespace std;
 using namespace cv;
 
-
 /*
  * function to convert normal image to it's corresponding fourier transform
  * params : CV::Mat object type image
@@ -31,13 +30,12 @@ using namespace cv;
 // padding images to apply kernals on them
 Mat padding(Mat img, int k_width, int k_height)
 {
-    Mat scr;
-    img.convertTo(scr, CV_64FC1); // converting the image pixels to 64 bits
+    img.convertTo(img, CV_64FC1); // converting the image pixels to 64 bits
     int pad_rows, pad_cols;
     pad_rows = (k_height - 1) / 2; // = 1
     pad_cols = (k_width - 1) / 2;  // = 1
-    Mat pad_image(Size(scr.cols + 2 * pad_cols, scr.rows + 2 * pad_rows), CV_64FC1, Scalar(0)); // resizing the image with the padding
-    scr.copyTo(pad_image(Rect(pad_cols, pad_rows, scr.cols, scr.rows))); // creating new padded image
+    Mat pad_image(Size(img.cols + 2 * pad_cols, img.rows + 2 * pad_rows), CV_64FC1, Scalar(0)); // resizing the image with the padding
+    img.copyTo(pad_image(Rect(pad_cols, pad_rows, img.cols, img.rows))); // creating new padded image
     return pad_image;
 }
 
@@ -84,35 +82,35 @@ Mat define_kernel_gaussian(int k_width, int k_height, int sigma)
 }
 
 // function to implement convolution of average filter
-void boxFilter(Mat scr, Mat& dst, int k_w, int k_h)
+void boxFilter(Mat& img, int k_w, int k_h)
 {
     Mat pad_img, kernel;
-    pad_img = padding(scr, k_w, k_h);
+    pad_img = padding(img, k_w, k_h);
     kernel = define_kernel_box(k_w, k_h);
 
-    Mat output = Mat::zeros(scr.size(), CV_64FC1);
+    Mat output = Mat::zeros(img.size(), CV_64FC1);
 
-    for (int i = 0; i < scr.rows; i++)
-        for (int j = 0; j < scr.cols; j++)
+    for (int i = 0; i < img.rows; i++)
+        for (int j = 0; j < img.cols; j++)
             output.at<double>(i, j) = sum(kernel.mul(pad_img(Rect(j, i, k_w, k_h)))).val[0]; // rect selects the corresponding neighbours of each pixel
 
-    output.convertTo(dst, CV_8UC1);
+    output.convertTo(img, CV_8UC1);
 }
 
 // function to implement convolution of gaussian filter
-void gaussianFilter(Mat scr, Mat& dst, int k_w, int k_h, int sigma)
+void gaussianFilter(Mat& img, int k_w, int k_h, int sigma)
 {
     Mat pad_img, kernel;
-    pad_img = padding(scr, k_w, k_h);
+    pad_img = padding(img, k_w, k_h);
     kernel = define_kernel_gaussian(k_w, k_h, sigma);
 
-    Mat output = Mat::zeros(scr.size(), CV_64FC1);
+    Mat output = Mat::zeros(img.size(), CV_64FC1);
 
-    for (int i = 0; i < scr.rows; i++)
-        for (int j = 0; j < scr.cols; j++)
+    for (int i = 0; i < img.rows; i++)
+        for (int j = 0; j < img.cols; j++)
             output.at<double>(i, j) = sum(kernel.mul(pad_img(Rect(j, i, k_w, k_h)))).val[0];
 
-    output.convertTo(dst, CV_8UC1);
+    output.convertTo(img, CV_8UC1);
 }
 
 // function to implement convolution of median filter

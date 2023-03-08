@@ -1,4 +1,6 @@
 #include "mainwindow.h"
+#include "noise.h"
+#include "noiseFilters.h"
 #include "ui_mainwindow.h"
 #include <QFileDialog>
 #include <QMessageBox>
@@ -50,6 +52,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->originalImgLbl_3->hide();
     ui->label->hide();
     ui->label2->hide();
+
+    ui->GaussianSlider->hide();
 
 }
 
@@ -301,30 +305,107 @@ void MainWindow::on_localRadio_clicked()
 
 void MainWindow::on_submitEdges_clicked()
 {
+     Mat originalImg=img->getImage("threshold");
+     Mat result;
+     int(*mask)[3];
 
+    // convertToGrayscale(originalImg,grayScaled);
+     mask=getArray(ui->EdgesFilter->currentText().toStdString(),ui->EdgesDirection->currentText().toStdString());
+     result=masking(originalImg,mask);
 
- Mat originalImg=img->getImage("threshold");
- Mat result;
- int(*mask)[3];
+     QImage image2((uchar*)result.data, result.cols, result.rows,QImage::Format_Grayscale8);
 
-//convertToGrayscale(originalImg,grayScaled);
- mask=getArray(ui->EdgesFilter->currentText().toStdString(),ui->EdgesDirection->currentText().toStdString());
- result=masking(originalImg,mask);
-
- QImage image2((uchar*)result.data, result.cols, result.rows,QImage::Format_Grayscale8);
-
- QPixmap pix = QPixmap::fromImage(image2);
- int width_img=ui->filteredImgEdge->width();
- int height_img=ui->filteredImgEdge->height();
- ui->filteredImgEdge->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
-
-
-
+     QPixmap pix = QPixmap::fromImage(image2);
+     int width_img=ui->filteredImgEdge->width();
+     int height_img=ui->filteredImgEdge->height();
+     ui->filteredImgEdge->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
 }
 
 
-void MainWindow::on_filter_1_btn_clicked()
+void MainWindow::on_saltNoBtn_clicked()
 {
+    ui->GaussianSlider->hide();
+    Mat noisyImg = img->getImage("filtering");
+    Add_salt_pepper_Noise(noisyImg);
+
+    QImage image2((uchar*)noisyImg.data, noisyImg.cols, noisyImg.rows,QImage::Format_Grayscale8);
+
+    QPixmap pix = QPixmap::fromImage(image2);
+    int width_img=ui->originalImg->width();
+    int height_img=ui->originalImg->height();
+    ui->filteredImg->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
 
 }
 
+
+void MainWindow::on_gaussianNoBtn_clicked()
+{
+    ui->GaussianSlider->show();
+    Mat noisyImg = img->getImage("filtering");
+    Add_gaussian_Noise(noisyImg);
+
+    QImage image2((uchar*)noisyImg.data, noisyImg.cols, noisyImg.rows,QImage::Format_Grayscale8);
+
+    QPixmap pix = QPixmap::fromImage(image2);
+    int width_img=ui->originalImg->width();
+    int height_img=ui->originalImg->height();
+    ui->filteredImg->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+}
+
+
+void MainWindow::on_avgNoBtn_clicked()
+{
+    ui->GaussianSlider->hide();
+    Mat noisyImg = img->getImage("filtering");
+    add_uniform_noise(noisyImg);
+
+    QImage image2((uchar*)noisyImg.data, noisyImg.cols, noisyImg.rows,QImage::Format_Grayscale8);
+
+    QPixmap pix = QPixmap::fromImage(image2);
+    int width_img=ui->originalImg->width();
+    int height_img=ui->originalImg->height();
+    ui->filteredImg->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+}
+
+void MainWindow::on_altFiltBtn_clicked()
+{
+    ui->GaussianSlider->hide();
+    Mat filteredImg = img->getImage("filtering");
+    medianFilter(filteredImg);
+
+    QImage image2((uchar*)filteredImg.data, filteredImg.cols, filteredImg.rows,QImage::Format_Grayscale8);
+
+    QPixmap pix = QPixmap::fromImage(image2);
+    int width_img=ui->originalImg->width();
+    int height_img=ui->originalImg->height();
+    ui->filteredImg->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+}
+
+void MainWindow::on_gaussianFilBtn_clicked()
+{
+    ui->GaussianSlider->hide();
+    Mat filteredImg = img->getImage("filtering");
+
+//    gaussianFilter(filteredImg);
+
+    QImage image2((uchar*)filteredImg.data, filteredImg.cols, filteredImg.rows,QImage::Format_Grayscale8);
+
+    QPixmap pix = QPixmap::fromImage(image2);
+    int width_img=ui->originalImg->width();
+    int height_img=ui->originalImg->height();
+    ui->filteredImg->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+}
+
+void MainWindow::on_avgFiltBtn_clicked()
+{
+    ui->GaussianSlider->hide();
+    Mat filteredImg = img->getImage("filtering");
+//    boxFilter(filteredImg);
+
+    QImage image2((uchar*)filteredImg.data, filteredImg.cols, filteredImg.rows,QImage::Format_Grayscale8);
+
+    QPixmap pix = QPixmap::fromImage(image2);
+    int width_img=ui->originalImg->width();
+    int height_img=ui->originalImg->height();
+    ui->filteredImg->setPixmap(pix.scaled(width_img,height_img,Qt::KeepAspectRatio));
+}

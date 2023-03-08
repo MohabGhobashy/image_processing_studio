@@ -47,6 +47,22 @@ private slots:
 
     void on_gaussFiltBtn_clicked();
 
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_3_clicked(bool checked);
+
+    void on_saltNoBtn_clicked();
+
+    void on_gaussianNoBtn_clicked();
+
+    void on_avgNoBtn_clicked();
+
+    void on_altFiltBtn_clicked();
+
+    void on_gaussianFilBtn_clicked();
+
+    void on_avgFiltBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
