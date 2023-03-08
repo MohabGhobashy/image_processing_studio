@@ -29,24 +29,25 @@ void Add_gaussian_Noise(Mat& srcArr, double mean, double sigma)
     add(srcArr, NoiseArr, srcArr);
 }
 
-Mat add_uniform_noise(cv::Mat& img)
+void add_uniform_noise(cv::Mat& img)
 {
     // Convert image to the double
     Mat out_img;
     Mat norm_img;
-    img.convertTo(norm_img, CV_64FC3);
-    norm_img = norm_img / 255;
+    img.convertTo(img, CV_64FC1);
+    norm_img = img / 255;
 
     // Generate uniform noise
-    Mat noise(norm_img.size(), CV_64FC3);
+    Mat noise(norm_img.size(), CV_64FC1);
     randu(noise, 0, 1);
 
     out_img = norm_img + noise;
 
     // Convert double to the 8-bit unsigned
-    normalize(out_img, out_img, 0.0, 1.0, cv::NORM_MINMAX, CV_64FC3);
+    normalize(out_img, out_img, 0.0, 1.0, cv::NORM_MINMAX, CV_64FC1);
     out_img *= 255;
-    out_img.convertTo(out_img, CV_8UC3);
+    out_img.convertTo(out_img, CV_8UC1);
+    img=out_img;
 
-    return out_img;
+
 }
