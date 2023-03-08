@@ -63,6 +63,20 @@ private slots:
 
     void on_avgFiltBtn_clicked();
 
+    void on_sigmaSlider_valueChanged(int value);
+
+    void on_kernelSlider_valueChanged(int value);
+
+    void on_highThreshold_valueChanged(int value);
+
+    void on_lowThresholdSlider_valueChanged(int value);
+
+    void on_EdgesFilter_currentIndexChanged(int index);
+
+    void on_highThresholdSlider_valueChanged(int value);
+
+    void on_comboBox_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
 };
