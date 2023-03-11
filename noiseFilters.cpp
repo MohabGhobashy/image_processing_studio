@@ -8,6 +8,7 @@
 using namespace std;
 using namespace cv;
 
+
 /*
  * helper function used for median filter to sort elements
  * params : array and its size
@@ -30,10 +31,10 @@ void insertionSort(int arr[], int n)
     }
 }
 
+
 /*
  * helper function used for padding the images with 2 rows and 2 columns of zeros
- * params : CV::Mat object image, kernal width and kernal height
- * first we clone the image then we create a uniform noise and finally we add this noise to the image
+ * params : CV::Mat object image, kernel width and kernel height
 */
 Mat padding(Mat img, int k_width, int k_height)
 {
@@ -52,13 +53,24 @@ Mat padding(Mat img, int k_width, int k_height)
     return pad_image;
 }
 
-// function to define kernels for gaussian convolution
+
+/*
+ * helper function used to define kernels for average convolution
+ * params : kernel width and kernel height
+*/
+Mat define_kernel_box(int k_width, int k_height)
+{
+    Mat kernel(k_height, k_width, CV_64FC1, Scalar(1.0 / (k_width * k_height))); // creates 3x3 matrix multiplied in scaler value 1/9
+    return kernel;
+}
+
+
+/*
+ * helper function used to define kernels for gaussian convolution
+ * params : kernel width and kernel height
+*/
 Mat define_kernel_gaussian(int k_width, int k_height, int sigma)
 {
-    if(k_width%2==0){
-        k_width=k_width+1;
-        k_height=k_height+1;
-    }
     const double pi = M_PI;
         int pad_rows = (k_height - 1) / 2;
         int pad_cols = (k_width - 1) / 2;
@@ -72,8 +84,6 @@ Mat define_kernel_gaussian(int k_width, int k_height, int sigma)
                 // Calculate Gaussian function value with corrected order of operations
                 kernel.at<double>(i + pad_rows, j + pad_cols) = (1 / (2.0 * pi * sigma * sigma)) * exp(-((i * i + j * j) / (sigma * sigma)));
 
-
-
         // Normalize kernel to ensure that it sums to 1
         kernel = kernel / sum(kernel);
 
@@ -81,16 +91,21 @@ Mat define_kernel_gaussian(int k_width, int k_height, int sigma)
         return kernel;
 }
 
-// function to implement convolution of gaussian filter
+
+/*
+ * function to implement convolution of gaussian filter
+ * params : CV::Mat object image, kernel width and kernel height and the standard diviation
+ * first it zero pads the image then it applies the kernel on the image pixels through the nested loop
+*/
 void gaussianFilter(Mat& img, int k_w, int k_h, int sigma)
 {
     if(k_w%2==0){
         k_w=k_w+1;
         k_h=k_h+1;
     }
+
     Mat pad_img, kernel;
     pad_img = padding(img, k_w, k_h);
-    //copyMakeBorder(img,pad_img,1,1,1,1,BORDER_CONSTANT,Scalar(0));
     kernel = define_kernel_gaussian(k_w, k_h, sigma);
 
     Mat output = Mat::zeros(img.size(), CV_64FC1);
@@ -100,40 +115,44 @@ void gaussianFilter(Mat& img, int k_w, int k_h, int sigma)
             output.at<double>(i, j) = sum(kernel.mul(pad_img(Rect(j, i, k_w, k_h)))).val[0];
 
     output.convertTo(img, CV_8UC1);
-    //GaussianBlur(img, img, cv::Size(5, 5), 0, 0);
 }
 
-// function to define kernels for convolution
-Mat define_kernel_box(int k_width, int k_height)
-{
-    // box kernel
-    Mat kernel(k_height, k_width, CV_64FC1, Scalar(1.0 / (k_width * k_height))); // creates 3x3 matrix multiplied in scaler value 1/9
-    return kernel;
-}
 
-// function to implement convolution of average filter
-void boxFilter(Mat& img, int k_w, int k_h)
+/*
+ * function to implement convolution of average filter
+ * params : CV::Mat object image, kernel width and kernel height and the standard diviation
+ * first it zero pads the image then it applies the kernel on the image pixels through the nested loop
+*/
+void boxFilter(Mat& img, int k_width, int k_height)
 {
+    if(k_width%2==0){
+        k_width=k_width+1;
+        k_height=k_height+1;
+    }
 
     Mat pad_img, kernel;
-    pad_img = padding(img, k_w, k_h);
-    kernel = define_kernel_box(k_w, k_h);
+    pad_img = padding(img, k_width, k_height);
+    kernel = define_kernel_box(k_width, k_height);
 
     Mat output = Mat::zeros(img.size(), CV_64FC1);
 
     for (int i = 0; i < img.rows; i++)
         for (int j = 0; j < img.cols; j++)
-            output.at<double>(i, j) = sum(kernel.mul(pad_img(Rect(j, i, k_w, k_h)))).val[0]; // rect selects the corresponding neighbours of each pixel
+            output.at<double>(i, j) = sum(kernel.mul(pad_img(Rect(j, i, k_width, k_height)))).val[0]; // rect selects the corresponding neighbours of each pixel
 
     output.convertTo(img, CV_8UC1);
 }
 
-// function to implement convolution of median filter
+
+/*
+ * function to implement median filter
+ * params : CV::Mat object image
+ * first it selects the neighbouring 8 pixels for each pixel in the picture, then sort them and inject the median in the current pix
+*/
 void medianFilter(Mat& image)
 {
     int window[9];
     for (int i = 1; i < image.rows - 1; i++)
-    {
         for (int j = 1; j < image.cols - 1; j++)
         {
             window[0] = image.at<uchar>(i - 1, j - 1);
@@ -150,5 +169,4 @@ void medianFilter(Mat& image)
             insertionSort(window, 9);
             image.at<uchar>(i, j) = window[4];
         }
-    }
 }

@@ -311,7 +311,7 @@ QTabBar::tab:selected {
         <x>320</x>
         <y>580</y>
         <width>261</width>
-        <height>31</height>
+        <height>47</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
@@ -327,15 +327,7 @@ QTabBar::tab:selected {
         </layout>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="sigmaLabelGaussN">
-         <item>
-          <widget class="QSlider" name="sigma_sliderGaussN">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <layout class="QVBoxLayout" name="sigmaLabelGaussN"/>
        </item>
       </layout>
      </widget>
@@ -345,7 +337,7 @@ QTabBar::tab:selected {
         <x>60</x>
         <y>580</y>
         <width>261</width>
-        <height>31</height>
+        <height>47</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -388,8 +380,8 @@ QTabBar::tab:selected {
      <widget class="QLabel" name="gaussian_slider_value">
       <property name="geometry">
        <rect>
-        <x>562</x>
-        <y>579</y>
+        <x>560</x>
+        <y>580</y>
         <width>51</width>
         <height>31</height>
        </rect>
@@ -434,17 +426,13 @@ QTabBar::tab:selected {
        </rect>
       </property>
       <layout class="QHBoxLayout" name="gaussianLabels">
+       <property name="spacing">
+        <number>0</number>
+       </property>
        <item>
-        <widget class="QLabel" name="meanLabel">
+        <widget class="QLabel" name="meanLabel_2">
          <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="varianceLabel">
-         <property name="text">
-          <string/>
+          <string>Mean</string>
          </property>
         </widget>
        </item>
@@ -540,9 +528,9 @@ border-radius: 4px;
       <property name="geometry">
        <rect>
         <x>610</x>
-        <y>560</y>
+        <y>580</y>
         <width>201</width>
-        <height>71</height>
+        <height>31</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_27">
@@ -607,10 +595,10 @@ border-radius: 4px;
 }</string>
          </property>
          <property name="minimum">
-          <number>3</number>
+          <number>1</number>
          </property>
          <property name="maximum">
-          <number>200</number>
+          <number>100</number>
          </property>
          <property name="singleStep">
           <number>2</number>
@@ -621,6 +609,116 @@ border-radius: 4px;
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QLabel" name="varianceLabel">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>630</y>
+        <width>61</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="meanLabel">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>570</y>
+        <width>51</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_17">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>640</y>
+        <width>261</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_28">
+       <item>
+        <widget class="QSlider" name="sigma_sliderGaussN">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="saltLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>570</y>
+        <width>63</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Salt</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="paperLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>570</y>
+        <width>63</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Paper</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="varianceLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>660</y>
+        <width>71</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Variance</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="kernelSize">
+      <property name="geometry">
+       <rect>
+        <x>810</x>
+        <y>600</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Kernel Size</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="kernelSize_2">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>600</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Kernel Size</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_5">
