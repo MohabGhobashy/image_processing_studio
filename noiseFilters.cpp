@@ -20,12 +20,6 @@ using namespace cv;
  * the logarithmic sclae and rearrangement of it's quarters.
 */
 
-/**
-  * A method for convenience that returns shifted fourier transform to original
-  *
-  * @param planes: The dft output as separated planes planes[0] -> real, planes[1] -> imaginary.
-  *
- */
 
 // insertion sort algorithm used in median filter
 void insertionSort(int arr[], int n)
@@ -74,12 +68,12 @@ Mat define_kernel_gaussian(int k_width, int k_height, int sigma)
         Mat kernel(k_height, k_width, CV_64FC1);
 
         // Calculate Gaussian function for each element of kernel matrix
-        for (int i = -pad_rows; i <= pad_rows; i++) {
-            for (int j = -pad_cols; j <= pad_cols; j++) {
+        for (int i = -pad_rows; i <= pad_rows; i++)
+            for (int j = -pad_cols; j <= pad_cols; j++)
                 // Calculate Gaussian function value with corrected order of operations
                 kernel.at<double>(i + pad_rows, j + pad_cols) = (1 / (2.0 * pi * sigma * sigma)) * exp(-((i * i + j * j) / (sigma * sigma)));
-            }
-        }
+
+
 
         // Normalize kernel to ensure that it sums to 1
         kernel = kernel / sum(kernel);
@@ -108,7 +102,7 @@ void gaussianFilter(Mat& img, int k_w, int k_h, int sigma)
             output.at<double>(i, j) = sum(kernel.mul(pad_img(Rect(j, i, k_w, k_h)))).val[0];
 
     output.convertTo(img, CV_8UC1);
-//    //GaussianBlur(img, img, cv::Size(5, 5), 0, 0);
+    //GaussianBlur(img, img, cv::Size(5, 5), 0, 0);
 }
 
 // function to define kernels for convolution

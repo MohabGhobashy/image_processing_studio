@@ -86,6 +86,12 @@ private slots:
 
     void on_GaussianSlider_valueChanged(int value);
 
+    void on_mean_sliderGaussN_actionTriggered(int action);
+
+    void on_mean_sliderGaussN_valueChanged(int value);
+
+    void on_sigma_sliderGaussN_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
 };

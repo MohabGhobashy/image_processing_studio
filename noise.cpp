@@ -1,11 +1,36 @@
 #include "noise.h"
 #include <iostream>
 #include <opencv2/core.hpp>
-#include<opencv2\highgui.hpp>
+#include <opencv2\highgui.hpp>
+#include <random>
 
 using namespace std;
 using namespace cv;
 
+/*
+ * function to add gaussian noise to an image
+ * params : CV::Mat object type image, double mean, double standard diviation
+ * first we clone the image then we create a gaussian noise and finally we add this noise to the image
+ *
+*/
+void Add_gaussian_Noise(Mat& img, double mean, double sigma)
+{
+//    Mat clonedImg = img.clone();
+//    RNG rng;
+//    rng.fill(clonedImg, RNG::NORMAL, mean, sigma);
+//    add(img, clonedImg, img);
+
+    Mat noise(img.size(),img.type());
+    randn(noise, mean, sigma); //mean and variance
+    img += noise;
+}
+
+/*
+ * function to add salt and paper noise to an image
+ * params : CV::Mat object type image
+ * first we clone the image then we create a gaussian noise and finally we add this noise to the image
+ *
+*/
 void Add_salt_pepper_Noise(Mat& srcArr, float pa, float pb)
 {
     RNG rng; // rand number generate
@@ -21,15 +46,13 @@ void Add_salt_pepper_Noise(Mat& srcArr, float pa, float pb)
     }
 }
 
-void Add_gaussian_Noise(Mat& srcArr, double mean, double sigma)
-{
-    Mat NoiseArr = srcArr.clone();
-    RNG rng;
-    rng.fill(NoiseArr, RNG::NORMAL, mean, sigma);
-    add(srcArr, NoiseArr, srcArr);
-}
-
-void add_uniform_noise(cv::Mat& img)
+/*
+ * function to average noise to an image
+ * params : CV::Mat object type image0
+ * first we clone the image then we create a gaussian noise and finally we add this noise to the image
+ *
+*/
+void add_uniform_noise(Mat& img)
 {
     // Convert image to the double
     Mat out_img;
