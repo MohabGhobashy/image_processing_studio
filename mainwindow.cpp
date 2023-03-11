@@ -1,20 +1,20 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "opencv2/world.hpp"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QPixmap>
 #include <QImage>
 #include <QVector>
 #include <QQueue>
-#include<QDebug>
-#include "opencv2/world.hpp"
+#include <QDebug>
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui.hpp>
 #include "Image.h"
 #include "processing.h"
-#include"EdgeDetection.h"
-#include"Histogram.h"
-#include"Threshold.h"
+#include "EdgeDetection.h"
+#include "Histogram.h"
+#include "Threshold.h"
 #include "frequencyfilters.h"
 #include "noise.h"
 #include "noiseFilters.h"
@@ -82,6 +82,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->submitThreshold_2->setDisabled(true);
     ui->mean_sliderGaussN->hide();
     ui->sigma_sliderGaussN->hide();
+    ui->saltSlider->hide();
+    ui->paperSlider->hide();
+    ui->saltLabel->hide();
+    ui->paperLabel->hide();
+    ui->varianceLabel->hide();
+    ui->meanLabel->hide();
 }
 
 MainWindow::~MainWindow()
@@ -447,25 +453,37 @@ void MainWindow::showImg(Mat& img, QLabel* imgLbl, enum QImage::Format imgFormat
 
 void MainWindow::on_saltNoBtn_2_clicked()
 {
+    ui->saltSlider->show();
+    ui->paperSlider->show();
+    ui->saltLabel->show();
+    ui->paperLabel->show();
     ui->GaussianSlider->hide();
     ui->average_slider->hide();
     ui->average_slider_value->hide();
     ui->slider_magdy_val->hide();
     ui->mean_sliderGaussN->hide();
     ui->sigma_sliderGaussN->hide();
+    ui->varianceLabel->hide();
+    ui->meanLabel->hide();
     Mat noisyImg = img->getImage("filtering");
-    Add_salt_pepper_Noise(noisyImg);
+    Add_salt_pepper_Noise(noisyImg,ui->saltSlider->value(),ui->paperSlider->value());
     showImg(noisyImg, ui->filteredImg, QImage::Format_Grayscale8, this->origWidth, this->origHeight);
 }
 
 void MainWindow::on_gaussianNoBtn_2_clicked()
 {
+    ui->mean_sliderGaussN->show();
+    ui->sigma_sliderGaussN->show();
+    ui->varianceLabel->show();
+    ui->meanLabel->show();
     ui->GaussianSlider->hide();
     ui->average_slider->hide();
     ui->average_slider_value->hide();
     ui->slider_magdy_val->hide();
-    ui->mean_sliderGaussN->show();
-    ui->sigma_sliderGaussN->show();
+    ui->saltSlider->hide();
+    ui->paperSlider->hide();
+    ui->saltLabel->hide();
+    ui->paperLabel->hide();
     Mat noisyImg = img->getImage("filtering");
     Add_gaussian_Noise(noisyImg, ui->mean_sliderGaussN->value(), ui->sigma_sliderGaussN->value());
     showImg(noisyImg, ui->filteredImg, QImage::Format_Grayscale8, this->origWidth, this->origHeight);
@@ -479,6 +497,12 @@ void MainWindow::on_avgNoBtn_2_clicked()
     ui->slider_magdy_val->hide();
     ui->mean_sliderGaussN->hide();
     ui->sigma_sliderGaussN->hide();
+    ui->saltSlider->hide();
+    ui->paperSlider->hide();
+    ui->saltLabel->hide();
+    ui->paperLabel->hide();
+    ui->varianceLabel->hide();
+    ui->meanLabel->hide();
     Mat noisyImg = img->getImage("filtering");
     add_uniform_noise(noisyImg);
     showImg(noisyImg, ui->filteredImg, QImage::Format_Grayscale8, this->origWidth, this->origHeight);
@@ -492,6 +516,12 @@ void MainWindow::on_altFiltBtn_2_clicked()
     ui->slider_magdy_val->hide();
     ui->mean_sliderGaussN->hide();
     ui->sigma_sliderGaussN->hide();
+    ui->saltSlider->hide();
+    ui->paperSlider->hide();
+    ui->saltLabel->hide();
+    ui->paperLabel->hide();
+    ui->varianceLabel->hide();
+    ui->meanLabel->hide();
     Mat filteredImg = img->getImage("filtering");
     medianFilter(filteredImg);
     showImg(filteredImg, ui->filteredImg, QImage::Format_Grayscale8, this->origWidth, this->origHeight);
@@ -501,9 +531,16 @@ void MainWindow::on_gaussianFilBtn_2_clicked()
 {
     ui->GaussianSlider->show();
     ui->slider_magdy_val->show();
+    ui->average_slider->hide();
     ui->average_slider_value->hide();
     ui->mean_sliderGaussN->hide();
     ui->sigma_sliderGaussN->hide();
+    ui->saltSlider->hide();
+    ui->paperSlider->hide();
+    ui->saltLabel->hide();
+    ui->paperLabel->hide();
+    ui->varianceLabel->hide();
+    ui->meanLabel->hide();
     Mat filteredImg = img->getImage("filtering");
     gaussianFilter(filteredImg,ui->GaussianSlider->value(),ui->GaussianSlider->value());
     showImg(filteredImg, ui->filteredImg, QImage::Format_Grayscale8, this->origWidth, this->origHeight);
@@ -513,10 +550,16 @@ void MainWindow::on_avgFiltBtn_2_clicked()
 {
     ui->average_slider->show();
     ui->average_slider_value->show();
-    ui->slider_magdy_val->hide();
+    ui->GaussianSlider->hide();
     ui->slider_magdy_val->hide();
     ui->mean_sliderGaussN->hide();
     ui->sigma_sliderGaussN->hide();
+    ui->saltSlider->hide();
+    ui->paperSlider->hide();
+    ui->saltLabel->hide();
+    ui->paperLabel->hide();
+    ui->varianceLabel->hide();
+    ui->meanLabel->hide();
     Mat filteredImg = img->getImage("filtering");
     boxFilter(filteredImg,ui->average_slider->value(),ui->average_slider->value());
     showImg(filteredImg, ui->filteredImg, QImage::Format_Grayscale8, this->origWidth, this->origHeight);
@@ -534,10 +577,21 @@ void MainWindow::on_GaussianSlider_valueChanged(int value)
 
 void MainWindow::on_mean_sliderGaussN_valueChanged(int value)
 {
-    ui->mean_sliderGaussN->setWindowTitle(QString::number(value));
+    ui->meanLabel->setText(QString::number(value));
 }
 
 void MainWindow::on_sigma_sliderGaussN_valueChanged(int value)
 {
-    ui->sigma_sliderGaussN->setWindowTitle(QString::number(value));
+    ui->varianceLabel->setText(QString::number(value));
 }
+
+void MainWindow::on_paperSlider_valueChanged(int value)
+{
+    ui->paperLabel->setText(QString::number(value));
+}
+
+void MainWindow::on_saltSlider_valueChanged(int value)
+{
+    ui->saltLabel->setText(QString::number(value));
+}
+

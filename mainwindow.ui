@@ -279,186 +279,26 @@ QTabBar::tab:selected {
        </item>
       </layout>
      </widget>
-     <widget class="QSlider" name="average_slider">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>590</y>
-        <width>261</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QSlider::groove:horizontal {
-border: 1px solid #bbb;
-background: white;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::sub-page:horizontal {
-background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
-    stop: 0 #66e, stop: 1 #bbf);
-background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
-    stop: 0 #bbf, stop: 1 #55f);
-border: 1px solid #777;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::add-page:horizontal {
-background: #fff;
-border: 1px solid #777;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::handle:horizontal {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-    stop:0 #eee, stop:1 #ccc);
-border: 1px solid #777;
-width: 13px;
-margin-top: -2px;
-margin-bottom: -2px;
-border-radius: 4px;
-}
-
-QSlider::handle:horizontal:hover {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-    stop:0 #fff, stop:1 #ddd);
-border: 1px solid #444;
-border-radius: 4px;
-}
-
-QSlider::sub-page:horizontal:disabled {
-background: #bbb;
-border-color: #999;
-}
-
-QSlider::add-page:horizontal:disabled {
-background: #eee;
-border-color: #999;
-}
-
-QSlider::handle:horizontal:disabled {
-background: #eee;
-border: 1px solid #aaa;
-border-radius: 4px;
-}</string>
-      </property>
-      <property name="minimum">
-       <number>3</number>
-      </property>
-      <property name="maximum">
-       <number>200</number>
-      </property>
-      <property name="singleStep">
-       <number>2</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
      <widget class="QLabel" name="average_slider_value">
       <property name="geometry">
        <rect>
-        <x>610</x>
-        <y>600</y>
-        <width>63</width>
-        <height>20</height>
+        <x>820</x>
+        <y>580</y>
+        <width>41</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
        <string/>
       </property>
      </widget>
-     <widget class="QSlider" name="GaussianSlider">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>590</y>
-        <width>261</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QSlider::groove:horizontal {
-border: 1px solid #bbb;
-background: white;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::sub-page:horizontal {
-background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
-    stop: 0 #66e, stop: 1 #bbf);
-background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
-    stop: 0 #bbf, stop: 1 #55f);
-border: 1px solid #777;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::add-page:horizontal {
-background: #fff;
-border: 1px solid #777;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::handle:horizontal {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-    stop:0 #eee, stop:1 #ccc);
-border: 1px solid #777;
-width: 13px;
-margin-top: -2px;
-margin-bottom: -2px;
-border-radius: 4px;
-}
-
-QSlider::handle:horizontal:hover {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-    stop:0 #fff, stop:1 #ddd);
-border: 1px solid #444;
-border-radius: 4px;
-}
-
-QSlider::sub-page:horizontal:disabled {
-background: #bbb;
-border-color: #999;
-}
-
-QSlider::add-page:horizontal:disabled {
-background: #eee;
-border-color: #999;
-}
-
-QSlider::handle:horizontal:disabled {
-background: #eee;
-border: 1px solid #aaa;
-border-radius: 4px;
-}</string>
-      </property>
-      <property name="minimum">
-       <number>3</number>
-      </property>
-      <property name="maximum">
-       <number>200</number>
-      </property>
-      <property name="singleStep">
-       <number>2</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
      <widget class="QLabel" name="slider_magdy_val">
       <property name="geometry">
        <rect>
-        <x>590</x>
+        <x>562</x>
         <y>580</y>
-        <width>63</width>
-        <height>51</height>
+        <width>51</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -469,7 +309,7 @@ border-radius: 4px;
       <property name="geometry">
        <rect>
         <x>320</x>
-        <y>639</y>
+        <y>580</y>
         <width>261</width>
         <height>31</height>
        </rect>
@@ -496,6 +336,289 @@ border-radius: 4px;
           </widget>
          </item>
         </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>580</y>
+        <width>261</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <layout class="QVBoxLayout" name="sAndPLabel">
+         <item>
+          <widget class="QSlider" name="saltSlider">
+           <property name="maximum">
+            <number>20</number>
+           </property>
+           <property name="singleStep">
+            <number>1</number>
+           </property>
+           <property name="pageStep">
+            <number>0</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="sAndPLabel_2">
+         <item>
+          <widget class="QSlider" name="paperSlider">
+           <property name="maximum">
+            <number>20</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="gaussian_slider_value">
+      <property name="geometry">
+       <rect>
+        <x>562</x>
+        <y>579</y>
+        <width>51</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_13">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>610</y>
+        <width>261</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="SandPlabelsLayout">
+       <item>
+        <widget class="QLabel" name="saltLabel">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="paperLabel">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_14">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>610</y>
+        <width>261</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="gaussianLabels">
+       <item>
+        <widget class="QLabel" name="meanLabel">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="varianceLabel">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_15">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>560</y>
+        <width>201</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_23">
+       <item>
+        <widget class="QSlider" name="GaussianSlider">
+         <property name="styleSheet">
+          <string notr="true">QSlider::groove:horizontal {
+border: 1px solid #bbb;
+background: white;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal {
+background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
+    stop: 0 #66e, stop: 1 #bbf);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+    stop: 0 #bbf, stop: 1 #55f);
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:horizontal {
+background: #fff;
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+    stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+width: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+    stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:horizontal:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:horizontal:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>100</number>
+         </property>
+         <property name="singleStep">
+          <number>2</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_16">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>560</y>
+        <width>201</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_27">
+       <item>
+        <widget class="QSlider" name="average_slider">
+         <property name="styleSheet">
+          <string notr="true">QSlider::groove:horizontal {
+border: 1px solid #bbb;
+background: white;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal {
+background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
+    stop: 0 #66e, stop: 1 #bbf);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+    stop: 0 #bbf, stop: 1 #55f);
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:horizontal {
+background: #fff;
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+    stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+width: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+    stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:horizontal:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:horizontal:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+         </property>
+         <property name="minimum">
+          <number>3</number>
+         </property>
+         <property name="maximum">
+          <number>200</number>
+         </property>
+         <property name="singleStep">
+          <number>2</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

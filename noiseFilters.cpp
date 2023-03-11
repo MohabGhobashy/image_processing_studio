@@ -9,19 +9,10 @@ using namespace std;
 using namespace cv;
 
 /*
- * function to convert normal image to it's corresponding fourier transform
- * params : CV::Mat object type image
- * return : CV::Mat object type image
- * first we adjust the size of it to be apropriate to fourier
- * by zero padding
- * then construct the complex matrix to apply fourier on it
- * and calculate the magnitude from the resulting matrix
- * with small modification on the magnitude matrix like
- * the logarithmic sclae and rearrangement of it's quarters.
+ * helper function used for median filter to sort elements
+ * params : array and its size
+ * insertion sort algorithm implementation
 */
-
-
-// insertion sort algorithm used in median filter
 void insertionSort(int arr[], int n)
 {
     int i, key, j;
@@ -39,7 +30,11 @@ void insertionSort(int arr[], int n)
     }
 }
 
-// padding images to apply kernals on them
+/*
+ * helper function used for padding the images with 2 rows and 2 columns of zeros
+ * params : CV::Mat object image, kernal width and kernal height
+ * first we clone the image then we create a uniform noise and finally we add this noise to the image
+*/
 Mat padding(Mat img, int k_width, int k_height)
 {
     img.convertTo(img, CV_64FC1); // converting the image pixels to 64 bits
@@ -60,6 +55,10 @@ Mat padding(Mat img, int k_width, int k_height)
 // function to define kernels for gaussian convolution
 Mat define_kernel_gaussian(int k_width, int k_height, int sigma)
 {
+    if(k_width%2==0){
+        k_width=k_width+1;
+        k_height=k_height+1;
+    }
     const double pi = M_PI;
         int pad_rows = (k_height - 1) / 2;
         int pad_cols = (k_width - 1) / 2;
@@ -88,7 +87,6 @@ void gaussianFilter(Mat& img, int k_w, int k_h, int sigma)
     if(k_w%2==0){
         k_w=k_w+1;
         k_h=k_h+1;
-
     }
     Mat pad_img, kernel;
     pad_img = padding(img, k_w, k_h);

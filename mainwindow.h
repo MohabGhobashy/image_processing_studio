@@ -92,6 +92,10 @@ private slots:
 
     void on_sigma_sliderGaussN_valueChanged(int value);
 
+    void on_paperSlider_valueChanged(int value);
+
+    void on_saltSlider_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
 };
