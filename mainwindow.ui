@@ -728,8 +728,8 @@ border-radius: 4px;
      <widget class="QWidget" name="horizontalLayoutWidget_5">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>40</y>
+        <x>70</x>
+        <y>50</y>
         <width>361</width>
         <height>281</height>
        </rect>
@@ -747,8 +747,8 @@ border-radius: 4px;
      <widget class="QWidget" name="horizontalLayoutWidget_6">
       <property name="geometry">
        <rect>
-        <x>420</x>
-        <y>40</y>
+        <x>490</x>
+        <y>50</y>
         <width>361</width>
         <height>281</height>
        </rect>
@@ -766,27 +766,37 @@ border-radius: 4px;
      <widget class="QLabel" name="originalImgLbl_2">
       <property name="geometry">
        <rect>
-        <x>170</x>
+        <x>210</x>
         <y>330</y>
-        <width>131</width>
+        <width>141</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Original</string>
+       <string>Original Image</string>
       </property>
      </widget>
      <widget class="QLabel" name="originalImgLbl_3">
       <property name="geometry">
        <rect>
-        <x>570</x>
+        <x>620</x>
         <y>330</y>
         <width>131</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Filtered</string>
+       <string>Filtered Image</string>
       </property>
      </widget>
      <widget class="QPushButton" name="submitEdges">
@@ -1353,7 +1363,7 @@ border-radius: 4px;
        </rect>
       </property>
       <property name="text">
-       <string>Kernel size</string>
+       <string>Kernel Size</string>
       </property>
      </widget>
      <widget class="QLabel" name="sigma_label">
@@ -1366,7 +1376,7 @@ border-radius: 4px;
        </rect>
       </property>
       <property name="text">
-       <string>sigma</string>
+       <string>Sigma</string>
       </property>
      </widget>
      <widget class="QLabel" name="highThresholdLabel">
@@ -1379,7 +1389,7 @@ border-radius: 4px;
        </rect>
       </property>
       <property name="text">
-       <string>high threshold</string>
+       <string>High Threshold</string>
       </property>
      </widget>
      <widget class="QLabel" name="lowThresholdLabel">
@@ -1392,7 +1402,7 @@ border-radius: 4px;
        </rect>
       </property>
       <property name="text">
-       <string>low threshold</string>
+       <string>Low Threshold</string>
       </property>
      </widget>
     </widget>
@@ -1403,8 +1413,8 @@ border-radius: 4px;
      <widget class="QWidget" name="horizontalLayoutWidget_7">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>60</y>
+        <x>80</x>
+        <y>50</y>
         <width>361</width>
         <height>281</height>
        </rect>
@@ -1422,9 +1432,9 @@ border-radius: 4px;
      <widget class="QWidget" name="horizontalLayoutWidget_8">
       <property name="geometry">
        <rect>
-        <x>400</x>
-        <y>60</y>
-        <width>361</width>
+        <x>500</x>
+        <y>50</y>
+        <width>351</width>
         <height>281</height>
        </rect>
       </property>
@@ -1438,31 +1448,41 @@ border-radius: 4px;
        </item>
       </layout>
      </widget>
-     <widget class="QLabel" name="histLabel">
+     <widget class="QWidget" name="horizontalLayoutWidget_18">
       <property name="geometry">
        <rect>
-        <x>162</x>
-        <y>370</y>
-        <width>81</width>
-        <height>20</height>
+        <x>200</x>
+        <y>350</y>
+        <width>821</width>
+        <height>29</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Histogram</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="distLabel">
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>359</y>
-        <width>131</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>distribution curve</string>
-      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_30">
+       <item>
+        <widget class="QLabel" name="distLabel">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Distribution Curve</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="histLabel">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Histogram</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
@@ -1785,11 +1805,18 @@ border-radius: 4px;
      <widget class="QLabel" name="labelThreshold">
       <property name="geometry">
        <rect>
-        <x>500</x>
+        <x>540</x>
         <y>340</y>
-        <width>111</width>
-        <height>20</height>
+        <width>131</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>cursive</family>
+        <pointsize>-1</pointsize>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">QLabel {
@@ -1801,17 +1828,24 @@ border-radius: 4px;
 }</string>
       </property>
       <property name="text">
-       <string>after threshold</string>
+       <string>After Threshold</string>
       </property>
      </widget>
      <widget class="QLabel" name="labelOriginalTab7">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>350</y>
-        <width>151</width>
-        <height>20</height>
+        <x>200</x>
+        <y>340</y>
+        <width>161</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>cursive</family>
+        <pointsize>-1</pointsize>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">QLabel {
@@ -1824,7 +1858,7 @@ border-radius: 4px;
 </string>
       </property>
       <property name="text">
-       <string>original</string>
+       <string>Original Image</string>
       </property>
      </widget>
      <widget class="QLabel" name="slider_label">
@@ -1837,7 +1871,7 @@ border-radius: 4px;
        </rect>
       </property>
       <property name="text">
-       <string>T-value</string>
+       <string>T Value</string>
       </property>
      </widget>
      <widget class="QLabel" name="slider_value">
@@ -1861,7 +1895,7 @@ border-radius: 4px;
      <widget class="QLabel" name="originalImgTab6">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>70</x>
         <y>50</y>
         <width>359</width>
         <height>279</height>
@@ -1874,7 +1908,7 @@ border-radius: 4px;
      <widget class="QLabel" name="thresholdedImg">
       <property name="geometry">
        <rect>
-        <x>410</x>
+        <x>470</x>
         <y>50</y>
         <width>359</width>
         <height>279</height>
@@ -1894,7 +1928,7 @@ border-radius: 4px;
        </rect>
       </property>
       <property name="text">
-       <string>global</string>
+       <string>Global</string>
       </property>
      </widget>
      <widget class="QRadioButton" name="localRadio">
@@ -1907,7 +1941,7 @@ border-radius: 4px;
        </rect>
       </property>
       <property name="text">
-       <string>local</string>
+       <string>Local</string>
       </property>
      </widget>
      <widget class="QPushButton" name="submitThreshold">
@@ -2121,7 +2155,7 @@ border-radius: 4px;
        </rect>
       </property>
       <property name="text">
-       <string>Block-size</string>
+       <string>Block Size</string>
       </property>
      </widget>
      <widget class="QLabel" name="cLabel">
@@ -2134,7 +2168,7 @@ border-radius: 4px;
        </rect>
       </property>
       <property name="text">
-       <string>C_value</string>
+       <string>C Value</string>
       </property>
      </widget>
      <widget class="QLabel" name="blockSliderValue">
@@ -2246,7 +2280,7 @@ border-radius: 4px;
       </property>
       <item>
        <property name="text">
-        <string>histogram</string>
+        <string>Histogram</string>
        </property>
       </item>
       <item>
@@ -2270,7 +2304,7 @@ border-radius: 4px;
        <rect>
         <x>380</x>
         <y>70</y>
-        <width>142</width>
+        <width>151</width>
         <height>131</height>
        </rect>
       </property>
