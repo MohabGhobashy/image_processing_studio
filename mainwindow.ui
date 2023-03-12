@@ -59,13 +59,15 @@ QTabBar::tab {
 QTabBar::tab:selected { 
   background:rgb(255, 147, 111); 
   margin-bottom: -1px; 
-}</string>
+}
+
+</string>
     </property>
     <property name="tabPosition">
      <enum>QTabWidget::North</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="iconSize">
      <size>
@@ -155,6 +157,11 @@ QTabBar::tab:selected {
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
             <widget class="QLabel" name="originalImg">
+             <property name="styleSheet">
+              <string notr="true">QLabel {
+    border: 1px solid #000000; 
+}</string>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -182,6 +189,11 @@ QTabBar::tab:selected {
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
             <widget class="QLabel" name="filteredImg">
+             <property name="styleSheet">
+              <string notr="true">QLabel {
+    border: 1px solid #000000; 
+}</string>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -229,6 +241,9 @@ QTabBar::tab:selected {
               </item>
               <item>
                <widget class="QPushButton" name="altFiltBtn_2">
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
                 <property name="text">
                  <string>Salt and Paper Filter</string>
                 </property>
@@ -737,6 +752,11 @@ border-radius: 4px;
       <layout class="QHBoxLayout" name="horizontalLayout_13">
        <item>
         <widget class="QLabel" name="originalImgEdges">
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    border: 1px solid #000000; 
+}</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -756,6 +776,11 @@ border-radius: 4px;
       <layout class="QHBoxLayout" name="horizontalLayout_14">
        <item>
         <widget class="QLabel" name="filteredImgEdge">
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    border: 1px solid #000000; 
+}</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -948,7 +973,7 @@ QComboBox::down-arrow {
        <rect>
         <x>10</x>
         <y>400</y>
-        <width>63</width>
+        <width>41</width>
         <height>31</height>
        </rect>
       </property>
@@ -1040,7 +1065,7 @@ border-radius: 4px;
        <number>1</number>
       </property>
       <property name="maximum">
-       <number>30</number>
+       <number>100</number>
       </property>
       <property name="singleStep">
        <number>1</number>
@@ -1413,8 +1438,8 @@ border-radius: 4px;
      <widget class="QWidget" name="horizontalLayoutWidget_7">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>50</y>
+        <x>60</x>
+        <y>130</y>
         <width>361</width>
         <height>281</height>
        </rect>
@@ -1422,6 +1447,9 @@ border-radius: 4px;
       <layout class="QHBoxLayout" name="horizontalLayout_15">
        <item>
         <widget class="QLabel" name="histImg">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -1432,8 +1460,8 @@ border-radius: 4px;
      <widget class="QWidget" name="horizontalLayoutWidget_8">
       <property name="geometry">
        <rect>
-        <x>500</x>
-        <y>50</y>
+        <x>480</x>
+        <y>130</y>
         <width>351</width>
         <height>281</height>
        </rect>
@@ -1441,6 +1469,9 @@ border-radius: 4px;
       <layout class="QHBoxLayout" name="horizontalLayout_16">
        <item>
         <widget class="QLabel" name="distImg">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -1451,8 +1482,8 @@ border-radius: 4px;
      <widget class="QWidget" name="horizontalLayoutWidget_18">
       <property name="geometry">
        <rect>
-        <x>200</x>
-        <y>350</y>
+        <x>40</x>
+        <y>430</y>
         <width>821</width>
         <height>29</height>
        </rect>
@@ -1462,8 +1493,17 @@ border-radius: 4px;
         <widget class="QLabel" name="distLabel">
          <property name="font">
           <font>
+           <family>Segoe UI</family>
            <pointsize>12</pointsize>
+           <italic>false</italic>
+           <bold>true</bold>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+qproperty-alignment: AlignCenter; font: 700 12pt &quot;Segoe UI&quot;;
+}
+</string>
          </property>
          <property name="text">
           <string>Distribution Curve</string>
@@ -1474,8 +1514,17 @@ border-radius: 4px;
         <widget class="QLabel" name="histLabel">
          <property name="font">
           <font>
+           <family>Segoe UI</family>
            <pointsize>12</pointsize>
+           <italic>false</italic>
+           <bold>true</bold>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+qproperty-alignment: AlignCenter; font: 700 12pt &quot;Segoe UI&quot;;
+}
+</string>
          </property>
          <property name="text">
           <string>Histogram</string>
@@ -1511,7 +1560,7 @@ border-radius: 4px;
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_13">
             <item>
-             <widget class="QLabel" name="processedImgLbl">
+             <widget class="QLabel" name="originalImgLbl_tab4">
               <property name="styleSheet">
                <string notr="true">QLabel {
 qproperty-alignment: AlignCenter; font: 700 12pt &quot;Segoe UI&quot;;
@@ -1544,7 +1593,7 @@ qproperty-alignment: AlignCenter; font: 700 12pt &quot;Segoe UI&quot;;
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_12">
             <item>
-             <widget class="QLabel" name="originalImgLbl_tab4">
+             <widget class="QLabel" name="processedImgLbl">
               <property name="styleSheet">
                <string notr="true">QLabel {
 qproperty-alignment: AlignCenter; font: 700 12pt &quot;Segoe UI&quot;;
@@ -1567,6 +1616,11 @@ qproperty-alignment: AlignCenter; font: 700 12pt &quot;Segoe UI&quot;;
           <layout class="QHBoxLayout" name="horizontalLayout_12">
            <item>
             <widget class="QLabel" name="originalImg_tab4">
+             <property name="styleSheet">
+              <string notr="true">QLabel {
+    border: 1px solid #000000; 
+}</string>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -1603,6 +1657,9 @@ qproperty-alignment: AlignCenter; font: 700 12pt &quot;Segoe UI&quot;;
                 <height>16777215</height>
                </size>
               </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
               <property name="text">
                <string>Normalize</string>
               </property>
@@ -1615,6 +1672,9 @@ qproperty-alignment: AlignCenter; font: 700 12pt &quot;Segoe UI&quot;;
                 <width>100</width>
                 <height>16777215</height>
                </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Hist Equalize</string>
@@ -1646,6 +1706,11 @@ qproperty-alignment: AlignCenter; font: 700 12pt &quot;Segoe UI&quot;;
               </property>
               <item>
                <widget class="QLabel" name="processedImg">
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+    border: 1px solid #000000; 
+}</string>
+                </property>
                 <property name="text">
                  <string/>
                 </property>
@@ -1680,6 +1745,9 @@ qproperty-alignment: AlignCenter; font: 700 12pt &quot;Segoe UI&quot;;
           <layout class="QHBoxLayout" name="horizontalLayout_15">
            <item>
             <widget class="QLabel" name="orgininalHist">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -1709,6 +1777,9 @@ qproperty-alignment: AlignCenter; font: 700 12pt &quot;Segoe UI&quot;;
           <layout class="QHBoxLayout" name="horizontalLayout_16">
            <item>
             <widget class="QLabel" name="processedHist">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -1901,6 +1972,11 @@ border-radius: 4px;
         <height>279</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+    border: 1px solid #000000; 
+}</string>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -1913,6 +1989,11 @@ border-radius: 4px;
         <width>359</width>
         <height>279</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+    border: 1px solid #000000; 
+}</string>
       </property>
       <property name="text">
        <string/>
@@ -2176,7 +2257,7 @@ border-radius: 4px;
        <rect>
         <x>470</x>
         <y>400</y>
-        <width>63</width>
+        <width>41</width>
         <height>20</height>
        </rect>
       </property>
@@ -2228,6 +2309,9 @@ border-radius: 4px;
           <layout class="QHBoxLayout" name="horizontalLayout_6">
            <item>
             <widget class="QLabel" name="rHist">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -2243,6 +2327,9 @@ border-radius: 4px;
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
             <widget class="QLabel" name="gHist">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -2258,6 +2345,9 @@ border-radius: 4px;
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
             <widget class="QLabel" name="bHist">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -2272,11 +2362,17 @@ border-radius: 4px;
      <widget class="QComboBox" name="comboBox">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>80</y>
-        <width>101</width>
+        <x>10</x>
+        <y>60</y>
+        <width>161</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+qproperty-alignment: AlignCenter; font: 700 12pt &quot;Segoe UI&quot;;
+}
+</string>
       </property>
       <item>
        <property name="text">
@@ -2361,6 +2457,9 @@ border-radius: 4px;
       <layout class="QHBoxLayout" name="horizontalLayout_17">
        <item>
         <widget class="QLabel" name="originalImg_freqfilters">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -2383,6 +2482,9 @@ border-radius: 4px;
        </property>
        <item>
         <widget class="QLabel" name="freq_filtered">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -2452,6 +2554,9 @@ border-radius: 4px;
       <layout class="QHBoxLayout" name="horizontalLayout_20">
        <item>
         <widget class="QLabel" name="originalImg_freqfilters2">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -2471,6 +2576,9 @@ border-radius: 4px;
       <layout class="QHBoxLayout" name="horizontalLayout_21">
        <item>
         <widget class="QLabel" name="originalImg_freqfilters3">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -2490,6 +2598,9 @@ border-radius: 4px;
       <layout class="QHBoxLayout" name="horizontalLayout_22">
        <item>
         <widget class="QLabel" name="resulthybrid">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string/>
          </property>

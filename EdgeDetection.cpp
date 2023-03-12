@@ -16,7 +16,7 @@ cv::Mat toGreyScale(cv::Mat image) {
 
 int(*(getArray)(std::string mode, std::string direction))[3]{
     if (mode == "Sobel") {
-        if (direction == "horizontal") {
+        if (direction == "vertical") {
             static int mask[3][3] = { {-1,-2,-1},{0,0,0},{1,2,1} };
             return mask;
         }
@@ -26,7 +26,7 @@ int(*(getArray)(std::string mode, std::string direction))[3]{
         }
     }
 if (mode == "Roberts") {
-    if (direction == "horizontal") {
+    if (direction == "vertical") {
         static int mask[3][3] = { {0,0,0},{0,-1,0},{0,0,1} };
         return mask;
     }
@@ -36,7 +36,7 @@ if (mode == "Roberts") {
     }
 }
 else if(mode =="Prewitt")  {
-        if (direction == "horizontal") {
+        if (direction == "vertical") {
             static int mask[3][3] = { {-1,-1,-1},{0,0,0},{1,1,1} };
             return mask;
         }

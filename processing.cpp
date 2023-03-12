@@ -29,7 +29,7 @@ void ProcessImg::normalize(Mat& img, int minVal, int maxVal){
 
 void ProcessImg::histEqualize(Mat& img){
     int n_bins = 256;
-    QPair<vector<int>, int> data = calcHist(img);
+    QPair<vector<int>, int> data = calcHist(img); // getting histogram array and the minima in pair
     vector<int> hist = data.hist;
     int minVal = data.minValue;
     float scale = (n_bins - 1.f) / (img.rows*img.cols - hist[minVal]);
