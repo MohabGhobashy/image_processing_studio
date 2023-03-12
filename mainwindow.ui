@@ -65,7 +65,7 @@ QTabBar::tab:selected {
      <enum>QTabWidget::North</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="iconSize">
      <size>
@@ -691,7 +691,7 @@ border-radius: 4px;
        </rect>
       </property>
       <property name="text">
-       <string>Variance</string>
+       <string>Sigma</string>
       </property>
      </widget>
      <widget class="QLabel" name="kernelSize">

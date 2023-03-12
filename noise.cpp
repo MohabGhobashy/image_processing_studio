@@ -12,7 +12,6 @@ using namespace cv;
  * function to add gaussian noise to an image
  * params : CV::Mat object type image, double mean, double variance
  * first we clone the image then we create a gaussian noise and finally we add this noise to the image
- *
 */
 void Add_gaussian_Noise(Mat& img, double mean, double sigma)
 {
@@ -26,7 +25,6 @@ void Add_gaussian_Noise(Mat& img, double mean, double sigma)
  * function to add salt and paper noise to an image
  * params : CV::Mat object type image
  * first we clone the image then we create a gaussian noise and finally we add this noise to the image
- *
 */
 void Add_salt_pepper_Noise(Mat& img, float pSalt, float pPaper)
 {
@@ -48,7 +46,6 @@ void Add_salt_pepper_Noise(Mat& img, float pSalt, float pPaper)
  * function to average noise to an image
  * params : CV::Mat object type image
  * first we clone the image then we create a uniform noise and finally we add this noise to the image
- *
 */
 void add_uniform_noise(Mat& img)
 {

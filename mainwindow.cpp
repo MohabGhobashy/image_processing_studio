@@ -31,7 +31,6 @@ QString imgPath2;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
     ui->equalizeBtn->setDisabled(true);
     ui->normalizeBtn->setDisabled(true);
@@ -113,6 +112,7 @@ void MainWindow::on_actionupload_triggered()
     if(imgPath.isEmpty())
         return;
 
+    // tab filtering
     ui->comboBox->show();
     ui->verticalWidget->setVisible(true);
     ui->buttons_layout->setVisible(true);
@@ -132,7 +132,6 @@ void MainWindow::on_actionupload_triggered()
     convertToGrayscale(image, grayImg);
     img->updateImage("threshold",grayImg);
     showImg(img->getImage("threshold"), ui->originalImgTab6, QImage::Format_Grayscale8, this->origWidth, this->origHeight);
-
     ui->labelOriginalTab7->show();
     ui->labelThreshold->show();
     ui->localRadio->show();
@@ -140,7 +139,7 @@ void MainWindow::on_actionupload_triggered()
     ui->submitThreshold->show();
     ui->thresholdedImg->clear();
 
-    // tab 4
+    // tab process
     ui->equalizeBtn->setDisabled(false);
     ui->normalizeBtn->setDisabled(false);
     cvtColor(img->getOriginalImage(), img->getImage("process"), COLOR_BGR2GRAY);
@@ -153,7 +152,7 @@ void MainWindow::on_actionupload_triggered()
     showImg(orihHistImg, ui->orgininalHist, QImage::Format_RGB888, this->origWidth, this->origHeight);
     showImg(orihHistImg, ui->processedHist, QImage::Format_RGB888, this->origWidth, this->origHeight);
 
-    // tab edge
+    // tab edge detection
     cvtColor(img->getOriginalImage(), img->getImage("edge-detection"), COLOR_BGR2GRAY);
     showImg(img->getImage("edge-detection"), ui->originalImgEdges, QImage::Format_Grayscale8, this->origWidth, this->origHeight);
     ui->EdgesFilter->show();
@@ -299,14 +298,12 @@ void MainWindow::on_submitEdges_clicked()
 void MainWindow::on_sigmaSlider_valueChanged(int value)
 {
     ui->sigmaValue->setText( QString::number(value));
-
 }
 
 
 void MainWindow::on_kernelSlider_valueChanged(int value)
 {
     ui->KernelValue->setText( QString::number(value));
-
 }
 
 
