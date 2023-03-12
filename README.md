@@ -18,13 +18,13 @@ It is a desktop application that allows users to do image processing.
 ## Features 
 - User can browse images from his pc to do image processing.
 - The project contains 7 tabs:
-  1 - User can add Uniform, Gaussian and salt & pepper noise to the uploaded image and also can apply Average, Gaussian and median filters.
-  2 - User is able to apply Sobel , Roberts , Prewitt and Canny edge detectors. 
-  3 - User can check the histogram and distribution curve of the uploaded picture.
-  4 - User can normalize and equalize the image.
-  5 - User is capable of applying local and global thresholding.
-  6 - User could transform an image from RGB to gray scale image and plot of R, G, and B histograms with its distribution function.
-  7 - User can apply two types of frequency domain filters (low pass filter & high pass filter) and can merge two images after applying different filters on them. 
+  - User can add Uniform, Gaussian and salt & pepper noise to the uploaded image and also can apply Average, Gaussian and median filters.
+  - User is able to apply Sobel , Roberts , Prewitt and Canny edge detectors. 
+  - User can check the histogram and distribution curve of the uploaded picture.
+  - User can normalize and equalize the image.
+  - User is capable of applying local and global thresholding.
+  - User could transform an image from RGB to gray scale image and plot of R, G, and B histograms with its distribution function.
+  - User can apply two types of frequency domain filters (low pass filter & high pass filter) and can merge two images after applying different filters on them. 
 
 ## Technology Used:
 The Desktop Application is built using:

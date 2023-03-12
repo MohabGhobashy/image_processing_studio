@@ -12,7 +12,6 @@ using namespace cv;
 /*
  * helper function used for median filter to sort elements
  * params : array and its size
- * insertion sort algorithm implementation
 */
 void insertionSort(int arr[], int n)
 {
@@ -106,7 +105,7 @@ void gaussianFilter(Mat& img, int k_w, int k_h, int sigma)
 
     Mat pad_img, kernel;
     pad_img = padding(img, k_w, k_h);
-    kernel = define_kernel_gaussian(k_w, k_h, sigma);
+    kernel  = define_kernel_gaussian(k_w, k_h, sigma);
 
     Mat output = Mat::zeros(img.size(), CV_64FC1);
 
@@ -132,7 +131,7 @@ void boxFilter(Mat& img, int k_width, int k_height)
 
     Mat pad_img, kernel;
     pad_img = padding(img, k_width, k_height);
-    kernel = define_kernel_box(k_width, k_height);
+    kernel  = define_kernel_box(k_width, k_height);
 
     Mat output = Mat::zeros(img.size(), CV_64FC1);
 

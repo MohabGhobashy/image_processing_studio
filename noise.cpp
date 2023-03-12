@@ -7,6 +7,7 @@
 using namespace std;
 using namespace cv;
 
+
 /*
  * function to add gaussian noise to an image
  * params : CV::Mat object type image, double mean, double variance
@@ -19,6 +20,7 @@ void Add_gaussian_Noise(Mat& img, double mean, double sigma)
     randn(noise, mean, sigma);
     img += noise;
 }
+
 
 /*
  * function to add salt and paper noise to an image
@@ -40,6 +42,7 @@ void Add_salt_pepper_Noise(Mat& img, float pSalt, float pPaper)
     for (int counter = 0; counter < amount2; ++counter)
         img.at<uchar>(rng.uniform(0, img.rows), rng.uniform(0, img.cols)) = 0;
 }
+
 
 /*
  * function to average noise to an image
