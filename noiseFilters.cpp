@@ -1,7 +1,4 @@
 #include "noiseFilters.h"
-#include <iostream>
-#include <opencv2/core.hpp>
-#include <opencv2\highgui.hpp>
 #include <QDebug>
 #include <EdgeDetection.h>
 
@@ -79,9 +76,9 @@ Mat define_kernel_gaussian(int k_width, int k_height, int sigma)
 
         // Calculate Gaussian function for each element of kernel matrix
         for (int i = -pad_rows; i <= pad_rows; i++)
-            for (int j = -pad_cols; j <= pad_cols; j++)
-                // Calculate Gaussian function value with corrected order of operations
-                kernel.at<double>(i + pad_rows, j + pad_cols) = (1 / (2.0 * pi * sigma * sigma)) * exp(-((i * i + j * j) / (sigma * sigma)));
+        for (int j = -pad_cols; j <= pad_cols; j++)
+            // Calculate Gaussian function value with corrected order of operations
+            kernel.at<double>(i + pad_rows, j + pad_cols) = (1 / (2.0 * pi * sigma * sigma)) * exp(-((i * i + j * j) / (sigma * sigma)));
 
         // Normalize kernel to ensure that it sums to 1
         kernel = kernel / sum(kernel);
@@ -136,8 +133,8 @@ void boxFilter(Mat& img, int k_width, int k_height)
     Mat output = Mat::zeros(img.size(), CV_64FC1);
 
     for (int i = 0; i < img.rows; i++)
-        for (int j = 0; j < img.cols; j++)
-            output.at<double>(i, j) = sum(kernel.mul(pad_img(Rect(j, i, k_width, k_height)))).val[0]; // rect selects the corresponding neighbours of each pixel
+    for (int j = 0; j < img.cols; j++)
+        output.at<double>(i, j) = sum(kernel.mul(pad_img(Rect(j, i, k_width, k_height)))).val[0]; // rect selects the corresponding neighbours of each pixel
 
     output.convertTo(img, CV_8UC1);
 }
@@ -152,20 +149,20 @@ void medianFilter(Mat& image)
 {
     int window[9];
     for (int i = 1; i < image.rows - 1; i++)
-        for (int j = 1; j < image.cols - 1; j++)
-        {
-            window[0] = image.at<uchar>(i - 1, j - 1);
-            window[1] = image.at<uchar>(i, j - 1);
-            window[2] = image.at<uchar>(i + 1, j - 1);
+    for (int j = 1; j < image.cols - 1; j++)
+    {
+        window[0] = image.at<uchar>(i - 1, j - 1);
+        window[1] = image.at<uchar>(i, j - 1);
+        window[2] = image.at<uchar>(i + 1, j - 1);
 
-            window[3] = image.at<uchar>(i - 1, j);
-            window[4] = image.at<uchar>(i, j);
-            window[5] = image.at<uchar>(i + 1, j);
+        window[3] = image.at<uchar>(i - 1, j);
+        window[4] = image.at<uchar>(i, j);
+        window[5] = image.at<uchar>(i + 1, j);
 
-            window[6] = image.at<uchar>(i - 1, j + 1);
-            window[7] = image.at<uchar>(i, j + 1);
-            window[8] = image.at<uchar>(i + 1, j + 1);
-            insertionSort(window, 9);
-            image.at<uchar>(i, j) = window[4];
-        }
+        window[6] = image.at<uchar>(i - 1, j + 1);
+        window[7] = image.at<uchar>(i, j + 1);
+        window[8] = image.at<uchar>(i + 1, j + 1);
+        insertionSort(window, 9);
+        image.at<uchar>(i, j) = window[4];
+    }
 }

@@ -1,13 +1,13 @@
 #ifndef Image_H
 #define Image_H
-
 #include "opencv2/core/core.hpp"
 #include <unordered_map>
 #include <string>
 #include <QPair>
+
 using namespace std;
 using namespace cv;
-//#include "QTCV.h"
+
 
 class Image
 {

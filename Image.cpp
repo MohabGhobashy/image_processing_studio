@@ -1,4 +1,5 @@
 #include "Image.h"
+
 using namespace std;
 using namespace cv;
 
@@ -13,21 +14,15 @@ void Image::setImage(Mat& img)
 void Image::setOriginalMat(){
     const int modesNum = 5;
     string modes[modesNum] = {"filtering", "edge-detection", "process", "threshold", "hyprid"};
-    for(int i= 0; i<modesNum; i++){
+    for(int i= 0; i<modesNum; i++)
+    {
         this->UpdatedImgs[modes[i]] = originalImg.clone();
     }
 
 }
 
-Mat& Image::getImage(string mode){
-    return this->UpdatedImgs[mode];
-}
+Mat& Image::getImage(string mode) { return this->UpdatedImgs[mode]; }
 
-Mat& Image::getOriginalImage(){
-    return this->originalImg;
-}
+Mat& Image::getOriginalImage()    { return this->originalImg; }
 
-
-void Image::updateImage(string mode, Mat& img){
-    this->UpdatedImgs[mode] = img;
-}
+void Image::updateImage(string mode, Mat& img) { this->UpdatedImgs[mode] = img; }

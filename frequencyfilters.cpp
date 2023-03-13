@@ -3,8 +3,15 @@
 using namespace std;
 using namespace cv;
 
+
+/*
+ * function to add gaussian noise to an image
+ * params : CV::Mat object type image, double mean, double variance
+ * first we clone the image then we create a gaussian noise and finally we add this noise to the image
+*/
 // create output image of optimal size - prepare the image for dft
-Mat adjustSize(Mat& img) {
+Mat adjustSize(Mat& img)
+{
     Mat padded;
     int rows = getOptimalDFTSize(img.rows);
     int cols = getOptimalDFTSize(img.cols);
@@ -12,7 +19,14 @@ Mat adjustSize(Mat& img) {
     return padded;
 }
 
-void fourierShift(Mat& Img) {
+
+/*
+ * function to add gaussian noise to an image
+ * params : CV::Mat object type image, double mean, double variance
+ * first we clone the image then we create a gaussian noise and finally we add this noise to the image
+*/
+void fourierShift(Mat& Img)
+{
     Img = Img(Rect(0, 0, Img.cols & -2, Img.rows & -2));
     int cx = Img.cols / 2;
     int cy = Img.rows / 2;
@@ -32,6 +46,12 @@ void fourierShift(Mat& Img) {
     tmp.copyTo(q2);
 }
 
+
+/*
+ * function to add gaussian noise to an image
+ * params : CV::Mat object type image, double mean, double variance
+ * first we clone the image then we create a gaussian noise and finally we add this noise to the image
+*/
 // Convert the image to complex numbers by applying dft
 Mat calcDFT(Mat& img) {
     // Mat padded = adjustSize(img);
@@ -47,22 +67,28 @@ Mat calcDFT(Mat& img) {
 }
 
 
-Mat createFilter(Mat& complex_img, float distance, string filterType) {
+/*
+ * function to add gaussian noise to an image
+ * params : CV::Mat object type image, double mean, double variance
+ * first we clone the image then we create a gaussian noise and finally we add this noise to the image
+*/
+Mat createFilter(Mat& complex_img, float distance, string filterType)
+{
     Mat filter(complex_img.size(), CV_32F, Scalar(1));
     Point center = Point(complex_img.rows / 2, complex_img.cols / 2);
     float radius;
-    for (int i = 0; i < complex_img.rows; i++) {
-        for (int j = 0; j < complex_img.cols; j++) {
-            radius = sqrt(pow((i - center.x), 2.0) + pow((j - center.y), 2.0));
+    for (int i = 0; i < complex_img.rows; i++)
+    for (int j = 0; j < complex_img.cols; j++)
+    {
+        radius = sqrt(pow((i - center.x), 2.0) + pow((j - center.y), 2.0));
 
-            if (filterType == "lowpass"){
-                if (radius > distance)
-                    filter.at<float>(i, j) = 0;
-            }
-            else if (filterType == "highpass") {
-                if (radius < distance)
-                    filter.at<float>(i, j) = 0;
-            }
+        if (filterType == "lowpass"){
+            if (radius > distance)
+                filter.at<float>(i, j) = 0;
+        }
+        else if (filterType == "highpass") {
+            if (radius < distance)
+                filter.at<float>(i, j) = 0;
         }
     }
 
@@ -70,13 +96,26 @@ Mat createFilter(Mat& complex_img, float distance, string filterType) {
 }
 
 
-void ifft(Mat& complex_img) {
+/*
+ * function to add gaussian noise to an image
+ * params : CV::Mat object type image, double mean, double variance
+ * first we clone the image then we create a gaussian noise and finally we add this noise to the image
+*/
+void ifft(Mat& complex_img)
+{
     fourierShift(complex_img);
     dft(complex_img, complex_img, DFT_INVERSE | DFT_REAL_OUTPUT);
     normalize(complex_img, complex_img, 0, 1, NORM_MINMAX);
 }
 
-Mat applyFilter(Mat& complex_img, Mat& filter) {
+
+/*
+ * function to add gaussian noise to an image
+ * params : CV::Mat object type image, double mean, double variance
+ * first we clone the image then we create a gaussian noise and finally we add this noise to the image
+*/
+Mat applyFilter(Mat& complex_img, Mat& filter)
+{
     Mat output_img;
     Mat planes_filter[] = { Mat_<float>(filter.clone()), Mat_<float>(filter.clone()) };
 

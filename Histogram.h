@@ -5,11 +5,14 @@
 #include <opencv2/opencv.hpp>
 #include<iostream>
 #include <cstdio>
-cv::Mat plot_histogram(cv::Mat histogram,int r=0,int g=0,int b=0);
-cv::Mat calc_histogram(cv::Mat image);
-cv::Mat DistributionCal(cv::Mat hist);
-std::tuple<cv::Mat, cv::Mat,cv::Mat> splitChannels(cv::Mat image );
-std::tuple<cv::Mat, cv::Mat,cv::Mat> plot_rgb_distribution_function(cv::Mat image,std::string mode) ;
+
 using namespace std;
 using namespace cv;
+
+Mat plot_histogram(Mat histogram,int r=0,int g=0,int b=0);
+Mat calc_histogram(Mat image);
+Mat DistributionCal(Mat hist);
+tuple<Mat, Mat,Mat> splitChannels(Mat image );
+tuple<Mat, Mat,Mat> plot_rgb_distribution_function(Mat image,string mode) ;
+
 #endif // HISTOGRAM_H

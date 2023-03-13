@@ -1,11 +1,9 @@
 #ifndef FREQUENCYFILTERS_H
 #define FREQUENCYFILTERS_H
-
 #include <iostream>
 #include <string>
 #include <cmath>
 #include "opencv2/core/core.hpp"
-
 
 using namespace std;
 using namespace cv;

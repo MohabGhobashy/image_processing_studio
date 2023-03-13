@@ -1,5 +1,6 @@
 #ifndef NOISE_H
 #define NOISE_H
+#include <random>
 #include <iostream>
 #include <opencv2/core.hpp>
 #include <opencv2\highgui.hpp>
