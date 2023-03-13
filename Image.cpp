@@ -18,7 +18,6 @@ void Image::setOriginalMat(){
     {
         this->UpdatedImgs[modes[i]] = originalImg.clone();
     }
-
 }
 
 Mat& Image::getImage(string mode) { return this->UpdatedImgs[mode]; }

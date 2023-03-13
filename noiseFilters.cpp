@@ -107,8 +107,8 @@ void gaussianFilter(Mat& img, int k_w, int k_h, int sigma)
     Mat output = Mat::zeros(img.size(), CV_64FC1);
 
     for (int i = 0; i < img.rows; i++)
-        for (int j = 0; j < img.cols; j++)
-            output.at<double>(i, j) = sum(kernel.mul(pad_img(Rect(j, i, k_w, k_h)))).val[0];
+    for (int j = 0; j < img.cols; j++)
+        output.at<double>(i, j) = sum(kernel.mul(pad_img(Rect(j, i, k_w, k_h)))).val[0];
 
     output.convertTo(img, CV_8UC1);
 }
