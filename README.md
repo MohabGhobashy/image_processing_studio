@@ -33,6 +33,13 @@ The Desktop Application is built using:
 ## Project Demo
 
 ## Screenshots
+![salt and paper image](https://user-images.githubusercontent.com/90320433/224530590-ca572c27-689d-4066-9de3-8bdbaafbb98e.png)
+![edge detection](https://user-images.githubusercontent.com/90320433/224530559-01d8f438-1031-4fa3-88c6-387cf8961ee5.png)
+![Histogram and Distribution Curves](https://user-images.githubusercontent.com/90320433/224530574-4025c457-e8b8-402b-b799-e8e140bb26c7.png)
+![hist equalize and normalize](https://user-images.githubusercontent.com/90320433/224530570-0ddda7cf-32b7-4844-97b8-f458250f308f.png)
+![thresholding](https://user-images.githubusercontent.com/90320433/224530594-ae083272-f9da-4368-b42e-8136506a50da.png)
+![rgb histograms](https://user-images.githubusercontent.com/90320433/224530580-d6383017-efd9-4ecf-9808-e90c0248c045.png)
+![frequency filters and hybrid image](https://user-images.githubusercontent.com/90320433/224530566-02375ac8-c2cc-4d1a-9a6f-32c74491d47a.png)
 
 
 ## Made by:
