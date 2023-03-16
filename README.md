@@ -50,7 +50,7 @@ The Desktop Application is built using:
 | [Mohammed Mostafa](https://github.com/Mo-Moustafa)        | 1 | 47 |
 | [Mohab Ghobashy](https://github.com/MohabGhobashy)        | 2 | 39 |
 | [Magdy Nasr](https://github.com/MyProjectsProgress)       | 2 | 15 |
-| [Youssef Kadry](https://github.com/YousefKadry)           | 1 | 13 |
+| [Youssef Kadry](https://github.com/YousefKadry)           | 2 | 58 |
 
 - Course Name : Computer Vision .
 
